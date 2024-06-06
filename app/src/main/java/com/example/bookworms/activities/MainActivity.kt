@@ -1,9 +1,8 @@
-package com.example.bookworms
+package com.example.bookworms.activities
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.Button
+import com.example.bookworms.R
 
 class MainActivity : AppCompatActivity() {
 
