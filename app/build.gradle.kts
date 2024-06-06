@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.utils.IMPLEMENTATION
-
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -87,6 +85,6 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-auth-ktx")
-
+    implementation("com.github.uberto:validator:1.0.3")
 }
 

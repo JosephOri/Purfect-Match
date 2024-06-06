@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".SignupActivity">
+    tools:context=".activities.SignupActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@color/cream"
+        >
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
@@ -173,28 +175,27 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button"
+            android:id="@+id/loginButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:backgroundTint="@color/design_default_color_primary"
             android:fontFamily="@font/roboto"
             android:text="Sign Up"
-            android:textColor="@color/black"
+            android:textColor="@color/cream"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/confirmPasswordLayout"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintVertical_bias="0.497" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/linkToSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already Registered? Sign In!"
-            android:textColor="#191919"
+            android:text="Already Registered? Log In!"
+            android:textColor="@color/purple"
             android:textStyle="normal|bold"
             android:fontFamily="@font/roboto"
             android:textSize="18sp"
@@ -202,7 +203,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
         <TextView
             android:id="@+id/textView2"
@@ -227,7 +228,7 @@
             android:fontFamily="@font/roboto"
 
             android:text="Please enter your credentials to  proceed "
-            android:textColor="#570E80"
+            android:textColor="@color/purple"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
