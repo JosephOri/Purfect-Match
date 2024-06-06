@@ -1,4 +1,4 @@
-package com.example.bookworms.activities
+package com.example.bookworms.Activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
