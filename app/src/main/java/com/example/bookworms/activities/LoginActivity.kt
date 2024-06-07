@@ -56,6 +56,8 @@ class LoginActivity : AppCompatActivity() {
                     val mainActivityIntent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(mainActivityIntent)
                 } else {
+                    Toast.makeText(baseContext, "invalid credentials, please try again.",
+                        Toast.LENGTH_SHORT).show()
                     Log.w("LoginActivity", "signInWithEmail:failure", task.exception)
                 }
             }
