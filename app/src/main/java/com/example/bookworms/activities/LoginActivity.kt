@@ -1,14 +1,14 @@
-package com.example.bookworms.Activities
+package com.example.bookworms.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookworms.R
+import com.example.bookworms.utils.Utils
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -28,9 +28,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(mainActivityIntent)
         }
         addLinkToSignUp()
+
         val emailField: TextInputEditText = findViewById(R.id.emailField)
         val passwordField: TextInputEditText = findViewById(R.id.passwordField)
-        val loginButton = findViewById<Button>(R.id.loginButton)
+        val loginButton = findViewById<Button>(R.id.signupButton)
 
         loginButton.setOnClickListener {
             logInUser(emailField, passwordField)
@@ -65,19 +66,13 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             return false
         }
-        if(!isEmailValid(email)){
-            Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show()
-            return false
-        }
-        if(!isEmailValid(email)){
+        if(!Utils.isEmailValid(email)){
             Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show()
             return false
         }
         return true
     }
-    private fun isEmailValid(email: String): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
+
     private fun addLinkToSignUp() {
         val linkToSignUp: TextView = findViewById(R.id.linkToSignup)
         linkToSignUp.setOnClickListener {
