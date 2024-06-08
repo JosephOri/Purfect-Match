@@ -59,6 +59,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.support.annotations)
     val roomVersion = "2.6.1"
 
     implementation(libs.androidx.core.ktx)

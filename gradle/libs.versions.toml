@@ -17,6 +17,7 @@ annotation = "1.6.0"
 constraintlayout = "2.1.4"
 lifecycleLivedataKtx = "2.8.0"
 lifecycleViewmodelKtx = "2.8.0"
+supportAnnotations = "28.0.0"
 
 [libraries]
 android-email-validator = { module = "com.vansuita:android-email-validator", version.ref = "androidEmailValidator" }
@@ -41,6 +42,7 @@ androidx-annotation = { group = "androidx.annotation", name = "annotation", vers
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+support-annotations = { group = "com.android.support", name = "support-annotations", version.ref = "supportAnnotations" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
