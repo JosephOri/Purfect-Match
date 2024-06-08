@@ -60,6 +60,8 @@ android {
 
 dependencies {
     implementation(libs.support.annotations)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     val roomVersion = "2.6.1"
 
     implementation(libs.androidx.core.ktx)
@@ -85,10 +87,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
-    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation(libs.firebase.bom)
+    implementation(libs.firebase.auth.ktx)
 
-    implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
 }
 
