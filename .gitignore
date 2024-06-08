@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+app/google-services.json
+/app/bookworms-2234-firebase-adminsdk-ey2th-002ac37cf0.json
+/app/firebase-adminSDK-bookWorms.json
