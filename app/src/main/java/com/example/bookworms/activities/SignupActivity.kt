@@ -33,11 +33,11 @@ class SignupActivity : AppCompatActivity() {
         }
         addLinkToLogin()
 
-        val nameField:TextInputEditText = findViewById(R.id.nameField)
-        val phoneField:TextInputEditText = findViewById(R.id.phoneField)
-        val emailField:TextInputEditText = findViewById(R.id.emailField)
-        val passwordField:TextInputEditText = findViewById(R.id.passwordField)
-        val confirmPasswordField:TextInputEditText = findViewById(R.id.confirmPasswordField)
+        val nameField:TextInputEditText = findViewById(R.id.activity_signup_full_name_input)
+        val phoneField:TextInputEditText = findViewById(R.id.activity_signup_phone_input)
+        val emailField:TextInputEditText = findViewById(R.id.activity_signup_email_input)
+        val passwordField:TextInputEditText = findViewById(R.id.activity_signup_password_input)
+        val confirmPasswordField:TextInputEditText = findViewById(R.id.activity_signup_confirm_password_input)
         val signupButton = findViewById<MaterialButton>(R.id.signupButton)
 
         signupButton.setOnClickListener {
@@ -84,7 +84,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun addLinkToLogin() {
-        val linkToLogin: TextView = findViewById(R.id.linkToSignup)
+        val linkToLogin: TextView = findViewById(R.id.linkToLogin)
         linkToLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
