@@ -1,29 +1,35 @@
 <resources>
     <string name="app_name">BookWorms</string>
+    <string name="activity_main_title">Welcome to BookWorms</string>
     <string name="activity_signup_title">Signup</string>
     <string name="activity_Login_title">Login</string>
 
-    <string name="sign_up_title">Become a Bookworm</string>
-    <string name="sign_up_button">Sign Up</string>
-
-    <string name="username">Username</string>
-    <string name="enter_username">Enter username</string>
+    <string name="full_name">Full name</string>
+    <string name="enter_full_name">Enter your full name</string>
 
     <string name="email">Email</string>
-    <string name="enter_email">Enter email</string>
+    <string name="enter_email">Enter your email</string>
+
+<!--    phone-->
+    <string name="phone">Phone</string>
+    <string name="enter_phone">Enter your phone number</string>
 
     <string name="password">Password</string>
     <string name="enter_password">Enter password</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="enter_confirm_password">Enter confirm password</string>
 
-    <string name="already_have_account">Already have an account?</string>
-<!--    the reverse of last line-->
-    <string name="not_registered_yet">Not Registered Yet? Sign Up!</string>
+    <string name="already_have_account">Already have an account? Log in!</string>
+    <string name="not_registered_yet">Not Registered Yet? Sign up!</string>
 
     <string name="login_title">Are you a Bookworm?</string>
     <string name="login_subtitle">Login to start exploring</string>
     <string name="login_button">Login</string>
     <string name="remember_me">Remember me</string>
+
+    <string name="signup_title">Become a Bookworm</string>
+    <string name="signup_subtitle">Sign up to start exploring</string>
+    <string name="signup_button">Sign Up</string>
 
     <string name="home_page_book_title">Book Title</string>
     <string name="enter_book_title">Enter book title</string>
@@ -47,6 +53,12 @@
     <string name="logout_button">Logout</string>
 
     <string name="profile_my_posts">My Posts</string>
+
+    <string name="menu_navbar_profile">Profile</string>
+    <string name="menu_navbar_my_posts">My Posts</string>
+    <string name="menu_navbar_map">Map</string>
+    <string name="menu_navbar_add_post">Add Post</string>
+
 
 
     <!--    strings for CRUD operations for user, book (post on media), -->
