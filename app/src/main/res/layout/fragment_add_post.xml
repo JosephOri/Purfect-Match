@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/addPostFragment"
     tools:context=".fragments.AddPostFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/menu_navbar_add_post" />
+        android:text="@string/menu_navbar_add_post"
+        android:textSize="32sp"/>
 
 </FrameLayout>

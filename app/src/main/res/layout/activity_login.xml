@@ -66,7 +66,6 @@
         android:textColorHint="@color/purple_500"
 
         app:layout_constraintTop_toBottomOf="@+id/activity_login_subtitle"
-        app:layout_constraintTBottom_toTopOf="@id/activity_login_password_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -78,7 +77,6 @@
             android:hint="@string/enter_email"
             android:inputType="textEmailAddress"
             app:layout_constraintTop_toBottomOf="@+id/activity_login_subtitle"
-            app:layout_constraintTBottom_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
