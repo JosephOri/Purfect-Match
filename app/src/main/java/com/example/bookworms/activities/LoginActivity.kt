@@ -29,8 +29,8 @@ class LoginActivity : AppCompatActivity() {
         }
         addLinkToSignUp()
 
-        val emailField: TextInputEditText = findViewById(R.id.emailField)
-        val passwordField: TextInputEditText = findViewById(R.id.passwordField)
+        val emailField: TextInputEditText = findViewById(R.id.activity_login_email_input)
+        val passwordField: TextInputEditText = findViewById(R.id.activity_login_password_input)
         val loginButton = findViewById<Button>(R.id.signupButton)
 
         loginButton.setOnClickListener {

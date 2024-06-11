@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.BookWorms" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Base.Theme.BookWorms" parent="Theme.AppCompat.DayNight.NoActionBar" />
+    <!--    use material3 to import style day/light-->
+    <style name="Theme.BookWorms.Day" parent="Base.Theme.BookWorms" />
+
+    <style name="RoundCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+        <item name="color">@color/white</item>
+    </style>
+
 </resources>
