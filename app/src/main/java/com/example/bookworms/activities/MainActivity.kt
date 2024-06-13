@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.bookworms.R
 import com.example.bookworms.databinding.ActivityMainBinding
 import com.example.bookworms.fragments.AddPostFragment
+import com.example.bookworms.fragments.HomePageFragment
 import com.example.bookworms.fragments.MapsFragment
 import com.example.bookworms.fragments.MyPostsFragment
 import com.example.bookworms.fragments.ProfilePageFragment
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         viewBinding.bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId) {
+                R.id.homePage -> replaceFragment(HomePageFragment())
                 R.id.profilePage -> replaceFragment(ProfilePageFragment())
                 R.id.addPostPage -> replaceFragment(AddPostFragment())
                 R.id.myPostsPage -> replaceFragment(MyPostsFragment())

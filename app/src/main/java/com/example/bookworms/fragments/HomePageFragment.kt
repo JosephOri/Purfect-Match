@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookworms.Model.entities.BookEntity
 import com.example.bookworms.R
@@ -22,21 +23,26 @@ class HomePageFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var bookList: ArrayList<BookEntity>
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profile_page, container, false)
+        val view = inflater.inflate(R.layout.fragment_home_page, container, false)
+        initializeParameters(view)
         return view
     }
 
-//    private fun initializeParameters(view : View) {
-//        bookList = arrayListOf()
-//
-//        recyclerView = view.findViewById(R.id.homePageBooksListRecyclerView)
-//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-//        recyclerView.setHasFixedSize(true)
-//    }
+    private fun initializeParameters(view : View) {
+        bookList = arrayListOf()
+
+        recyclerView = view.findViewById(R.id.homePageBooksListRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
+    }
 //
 //    private fun fetchBooksFromDb(onSuccess: () -> Unit) {
 ////        TODO: fetch books from firestore
