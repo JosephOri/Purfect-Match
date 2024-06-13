@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/homePageFragment"
+    android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.example.bookworms.fragments.HomePageFragment"
+        android:label="@string/activity_main_title"
+        tools:layout="@layout/fragment_home_page" />
+
+    <fragment
+        android:id="@+id/profilePageFragment"
+        android:name="com.example.bookworms.fragments.ProfilePageFragment"
+        android:label="@string/profile_title"
+        tools:layout="@layout/fragment_profile_page">
+
+        <action
+            android:id="@+id/action_profilePageFragment_to_editProfilePageFragment"
+            app:destination="@id/editProfilePageFragment" />
+
+        <action
+            android:id="@+id/action_profilePageFragment_to_myPostsFragment"
+            app:destination="@id/myPostsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.example.bookworms.fragments.AddPostFragment"
+        android:label="@string/menu_navbar_add_post"
+        tools:layout="@layout/fragment_add_post">
+    </fragment>
+
+    <fragment
+        android:id="@+id/myPostsFragment"
+        android:name="com.example.bookworms.fragments.MyPostsFragment"
+        android:label="@string/profile_my_posts"
+        tools:layout="@layout/fragment_my_posts">
+
+        <action
+            android:id="@+id/action_myPostsFragment_to_addPostFragment"
+            app:destination="@id/addPostFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.bookworms.fragments.MapsFragment"
+        android:label="@string/menu_navbar_map"
+        tools:layout="@layout/fragment_maps">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProfilePageFragment"
+        android:name="com.example.bookworms.fragments.EditProfilePageFragment"
+        android:label="@string/edit_profile"
+        tools:layout="@layout/fragment_edit_profile_page">
+
+    </fragment>
+
+</navigation>
