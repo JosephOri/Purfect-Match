@@ -1,15 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:orientation="vertical"
     android:id="@+id/addPostFragment"
     tools:context=".fragments.AddPostFragment">
 
-    <TextView
+   <ScrollView
+        android:id="@+id/addPostScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/menu_navbar_add_post"
-        android:textSize="32sp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:paddingTop="20dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="13dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="150dp"
+                app:cardElevation="10dp"
+                android:background="@drawable/ic_profile">
+
+                <ImageView
+                    android:id="@+id/addPostImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/no_image_available"
+                    android:src="@drawable/no_image"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center" />
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/addPostUploadBookImageLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/addPostUploadBookImageBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/img_search"
+                    android:contentDescription="@string/upload_image"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+
+            <LinearLayout
+               android:id="@+id/addPostFormLayout"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/white"
+               android:orientation="vertical"
+               android:gravity="center_vertical"
+               android:paddingTop="20dp"
+               android:paddingBottom="40dp">
+           </LinearLayout>
+        </LinearLayout>
+
+
+
+   </ScrollView>
+</LinearLayout>
+<!--TODO: fill up the fragment to show content of add posts, so that the title from mainActivity won't be visible. -->

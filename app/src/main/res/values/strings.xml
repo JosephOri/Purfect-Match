@@ -2,7 +2,7 @@
     <string name="app_name">BookWorms</string>
     <string name="activity_main_title">Welcome to BookWorms</string>
     <string name="activity_signup_title">Signup</string>
-    <string name="activity_Login_title">Login</string>
+    <string name="activity_login_title">Login</string>
 
     <string name="full_name">Full name</string>
     <string name="enter_full_name">Enter your full name</string>
@@ -10,7 +10,7 @@
     <string name="email">Email</string>
     <string name="enter_email">Enter your email</string>
 
-<!--    phone-->
+    <!--    phone-->
     <string name="phone">Phone</string>
     <string name="enter_phone">Enter your phone number</string>
 
@@ -60,7 +60,18 @@
     <string name="menu_navbar_add_post">Add Post</string>
     <string name="menu_navbar_home">Home</string>
 
+    <string name="books_fragment_title">Books</string>
 
+    <string name="no_image_available">No Image Available</string>
+    <string name="no_books_available">No Books Available</string>
+    <string name="upload_image">Upload Image</string>
+
+<!--    for add post form layout edit text boxes-->
+    <string name="book_title">Book Title</string>
+    <string name="book_author">Author</string>
+    <string name="book_genres">Genres</string>
+    <string name="book_rating">Rating</string>
+    <string name="book_description">Description</string>
 
     <!--    strings for CRUD operations for user, book (post on media), -->
 </resources>

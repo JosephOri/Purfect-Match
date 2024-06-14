@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookworms.Model.entities.BookEntity
 import com.example.bookworms.R
+import com.example.bookworms.adapters.BookAdapter
 
 /**
  * A simple `Fragment` subclass.
@@ -39,13 +40,14 @@ class HomePageFragment : Fragment() {
     private fun initializeParameters(view : View) {
         bookList = arrayListOf()
 
-        recyclerView = view.findViewById(R.id.homePageBooksListRecyclerView)
+        recyclerView = view.findViewById(R.id.homePageBooksList)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = BookAdapter(bookList)
     }
-//
-//    private fun fetchBooksFromDb(onSuccess: () -> Unit) {
-////        TODO: fetch books from firestore
-//    }
+
+/*    private fun fetchBooksFromDb(onSuccess: () -> Unit) {
+
+    }*/
 
 }
