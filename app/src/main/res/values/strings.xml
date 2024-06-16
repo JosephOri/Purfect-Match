@@ -72,6 +72,12 @@
     <string name="book_genres">Genres</string>
     <string name="book_rating">Rating</string>
     <string name="book_description">Description</string>
+    <string name="book_image">Image</string>
+    <string name="camera_button">Camera Button</string>
+    <string name="post_title">Post title</string>
+    <string name="post_description">Post Description</string>
+    <string name="go_back_arrow">Go Back</string>
+    <string name="app_logo">App Logo</string>
 
     <!--    strings for CRUD operations for user, book (post on media), -->
 </resources>
