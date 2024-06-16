@@ -1,13 +1,12 @@
-package com.example.bookworms.Model.entities
+package com.example.bookworms.models.entities
 
-import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "books")
 data class BookEntity (
-
+//    TODO: change this entity based on the API response and how we want to store a book returned from the API.
     @PrimaryKey
     var uid: String,
 
