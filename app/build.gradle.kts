@@ -81,6 +81,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.fragment)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -94,7 +95,7 @@ dependencies {
     implementation(libs.androidx.room.compiler) {
         exclude(group = "com.intellij" , module = "annotations")
     }
-    implementation("org.jetbrains:annotations:23.0.0")
+    implementation("org.jetbrains:annotations:24.1.0")
     implementation(platform(libs.firebase.bom))
     implementation("com.google.firebase:firebase-auth-ktx")
 
