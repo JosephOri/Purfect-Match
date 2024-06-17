@@ -10,6 +10,24 @@
     android:background="@color/cream"
     tools:context=".activities.LoginActivity">
 
+    <ImageView
+        android:id="@+id/goBackIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="@string/go_back_arrow"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_login_title"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0"
+        />
+
     <TextView android:id="@+id/activity_login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -155,5 +173,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupButton"
         app:layout_constraintVertical_bias="0.48" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/loginProgressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:trackColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

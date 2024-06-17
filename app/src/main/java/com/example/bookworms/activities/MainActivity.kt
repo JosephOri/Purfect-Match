@@ -2,6 +2,8 @@ package com.example.bookworms.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -11,11 +13,14 @@ import com.example.bookworms.fragments.AddPostFragment
 import com.example.bookworms.fragments.MapsFragment
 import com.example.bookworms.fragments.MyPostsFragment
 import com.example.bookworms.fragments.ProfilePageFragment
+import com.example.bookworms.fragments.ProgressFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var viewBinding: ActivityMainBinding
+
+    private val progressFragment = ProgressFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,22 +42,40 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewBinding.bottomNavigationView.setOnItemSelectedListener{
-            when(it.itemId) {
-                R.id.profilePage -> replaceFragment(ProfilePageFragment())
-                R.id.addPostPage -> replaceFragment(AddPostFragment())
-                R.id.myPostsPage -> replaceFragment(MyPostsFragment())
-                R.id.mapPage -> replaceFragment(MapsFragment())
+            showProgressFragment()
 
-                else -> {}
-            }
+            Handler(Looper.getMainLooper()).postDelayed({
+                when(it.itemId) {
+                    R.id.profilePage -> replaceFragment(ProfilePageFragment())
+                    R.id.addPostPage -> replaceFragment(AddPostFragment())
+                    R.id.myPostsPage -> replaceFragment(MyPostsFragment())
+                    R.id.mapPage -> replaceFragment(MapsFragment())
+                    else -> {}
+                }
+                hideProgressFragment()
+            }, 500)
+
             true
         }
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.mainFrameLayout, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainFrameLayout, fragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
+
+    private fun showProgressFragment() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.progressCircularFragment, progressFragment)
+        fragmentTransaction.commit()
+    }
+
+    private fun hideProgressFragment() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.remove(progressFragment)
+        fragmentTransaction.commit()
+    }
+
 }
