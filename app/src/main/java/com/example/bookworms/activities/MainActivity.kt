@@ -9,6 +9,7 @@ import android.widget.Button
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.bookworms.R
 import com.example.bookworms.databinding.ActivityMainBinding
 import com.example.bookworms.fragments.AboutFragment
@@ -20,6 +21,8 @@ import com.example.bookworms.fragments.ProfilePageFragment
 import com.example.bookworms.fragments.ProgressFragment
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -93,29 +96,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewBinding.bottomNavigationView.setOnItemSelectedListener{
-
-            showProgressFragment()
-
-            Handler(Looper.getMainLooper()).postDelayed({
-                when(it.itemId) {
-                     R.id.profilePage -> replaceFragment(ProfilePageFragment(), "profilePage")
-                     R.id.addPostPage -> replaceFragment(AddPostFragment(), "addPostPage")
-                     R.id.myPostsPage -> replaceFragment(MyPostsFragment(), "myPostsPage")
-                     R.id.mapPage -> replaceFragment(MapsFragment(), "mapPage")
-                    else -> {}
-                }
-                hideProgressFragment()
-            }, 500)
-
+            when (it.itemId) {
+                R.id.profilePage -> replaceFragment(ProfilePageFragment(), "profilePage")
+                R.id.addPostPage -> replaceFragment(AddPostFragment(), "addPostPage")
+                R.id.myPostsPage -> replaceFragment(MyPostsFragment(), "myPostsPage")
+                R.id.mapPage -> replaceFragment(MapsFragment(), "mapPage")
+                else -> {}
+            }
             true
         }
     }
 
     private fun replaceFragment(fragment: Fragment, tag: String? = null) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.mainFrameLayout, fragment, tag)
-        transaction.addToBackStack(tag)
-        transaction.commit()
+        lifecycleScope.launch {
+            showProgressFragment()
+            delay(500)
+            transaction.replace(R.id.mainFrameLayout, fragment, tag)
+            transaction.addToBackStack(tag)
+            transaction.commit()
+            hideProgressFragment()
+
+        }
     }
 
     private fun showProgressFragment() {
