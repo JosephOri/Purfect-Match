@@ -33,7 +33,7 @@ class HomePageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home_page, container, false)
-        initializeParameters(view)
+
         return view
     }
 

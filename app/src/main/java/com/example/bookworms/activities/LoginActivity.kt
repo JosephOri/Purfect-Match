@@ -3,6 +3,7 @@ package com.example.bookworms.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -13,11 +14,15 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.android.material.progressindicator.CircularProgressIndicator
 
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+
+    private lateinit var cpi : CircularProgressIndicator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -29,15 +34,19 @@ class LoginActivity : AppCompatActivity() {
         }
         addLinkToSignUp()
 
+        cpi = findViewById(R.id.loginCircularProgressIndicator)
+
         val emailField: TextInputEditText = findViewById(R.id.activity_login_email_input)
         val passwordField: TextInputEditText = findViewById(R.id.activity_login_password_input)
         val loginButton = findViewById<Button>(R.id.signupButton)
 
         loginButton.setOnClickListener {
+            cpi.visibility = View.VISIBLE
             logInUser(emailField, passwordField)
         }
 
     }
+
     private fun logInUser(
         emailField: TextInputEditText,
         passwordField: TextInputEditText
@@ -50,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
         }
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
+                cpi.visibility = View.INVISIBLE
                 if (task.isSuccessful) {
                     Log.d("LoginActivity", "signInWithEmail:success")
                     val user = auth.currentUser
