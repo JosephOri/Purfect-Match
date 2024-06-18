@@ -24,15 +24,19 @@
 
     <string name="login_title">Are you a Bookworm?</string>
     <string name="login_subtitle">Login to start exploring</string>
-    <string name="login_button">Login</string>
     <string name="remember_me">Remember me</string>
 
     <string name="signup_title">Become a Bookworm</string>
     <string name="signup_subtitle">Sign up to start exploring</string>
-    <string name="signup_button">Sign Up</string>
 
     <string name="home_page_book_title">Book Title</string>
     <string name="enter_book_title">Enter book title</string>
+
+    <string name="signup_button">Sign Up</string>
+    <string name="login_button">Login</string>
+    <string name="home_page_button">Home</string>
+    <string name="profile_page_button">Profile</string>
+    <string name="about_page_button">About Us</string>
 
     <string name="book_item_title">Book Title</string>
     <string name="book_item_author">Author</string>
