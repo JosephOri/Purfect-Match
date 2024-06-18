@@ -2,9 +2,14 @@ package com.example.bookworms.activities
 
 import android.content.Intent
 import android.os.Bundle
+
+import android.os.Handler
+import android.os.Looper
+import android.widget.Button
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.bookworms.R
 import com.example.bookworms.databinding.ActivityMainBinding
 import com.example.bookworms.fragments.AboutFragment
@@ -13,12 +18,18 @@ import com.example.bookworms.fragments.HomePageFragment
 import com.example.bookworms.fragments.MapsFragment
 import com.example.bookworms.fragments.MyPostsFragment
 import com.example.bookworms.fragments.ProfilePageFragment
+import com.example.bookworms.fragments.ProgressFragment
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var viewBinding: ActivityMainBinding
+
+
+    private val progressFragment = ProgressFragment()
 
     private var loginButton: MaterialButton? = null
     private var signupButton: MaterialButton? = null
@@ -85,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewBinding.bottomNavigationView.setOnItemSelectedListener{
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.profilePage -> replaceFragment(ProfilePageFragment(), "profilePage")
                 R.id.addPostPage -> replaceFragment(AddPostFragment(), "addPostPage")
                 R.id.myPostsPage -> replaceFragment(MyPostsFragment(), "myPostsPage")
@@ -98,11 +109,29 @@ class MainActivity : AppCompatActivity() {
 
     private fun replaceFragment(fragment: Fragment, tag: String? = null) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.mainFrameLayout, fragment, tag)
-        transaction.addToBackStack(tag)
-        transaction.commit()
+        lifecycleScope.launch {
+            showProgressFragment()
+            delay(500)
+            transaction.replace(R.id.mainFrameLayout, fragment, tag)
+            transaction.addToBackStack(tag)
+            transaction.commit()
+            hideProgressFragment()
+
+        }
     }
 
+    private fun showProgressFragment() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.progressCircularFragment, progressFragment)
+        fragmentTransaction.commit()
+    }
+
+    private fun hideProgressFragment() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.remove(progressFragment)
+        fragmentTransaction.commit()
+    }
+    
     private fun showLoggedInButtons() {
         logoutButton?.visibility = View.VISIBLE
 
@@ -124,4 +153,6 @@ class MainActivity : AppCompatActivity() {
         homePageButton?.visibility = View.INVISIBLE
         aboutPageButton?.visibility = View.INVISIBLE
     }
+
+
 }
