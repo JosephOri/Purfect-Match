@@ -26,7 +26,7 @@ class HomePageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profile_page, container, false)
+        val view = inflater.inflate(R.layout.fragment_home_page, container, false)
         return view
     }
 
