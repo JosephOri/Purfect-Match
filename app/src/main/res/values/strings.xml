@@ -10,7 +10,7 @@
     <string name="email">Email</string>
     <string name="enter_email">Enter your email</string>
 
-<!--    phone-->
+    <!--    phone-->
     <string name="phone">Phone</string>
     <string name="enter_phone">Enter your phone number</string>
 
@@ -62,7 +62,7 @@
     <string name="menu_navbar_my_posts">My Posts</string>
     <string name="menu_navbar_map">Map</string>
     <string name="menu_navbar_add_post">Add Post</string>
-
+    <string name="about_page_content">"This is the \"BookWorms\" application. This app is a social media platform for book lovers, exchanging books and search for interesting books nearby. You can publish a post about your favorite book, write your review about it and rate. You can also pin a location for your post about a specific book. With that, you and other users can exchange books, for FREE! That is the whole point of \"BookWorms\" - Read, Publish, Exchange. "</string>
 
 
     <!--    strings for CRUD operations for user, book (post on media), -->
