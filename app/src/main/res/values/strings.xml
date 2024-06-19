@@ -37,11 +37,11 @@
     <string name="about_page_button">About Us</string>
 
     <string name="book_item_title">Book Title</string>
-    <string name="book_item_author">Author</string>
+    <string name="book_item_author">Author:</string>
     <string name="book_item_image">Image</string>
-    <string name="book_item_genres">Genres</string>
-    <string name="book_item_rating">Rating</string>
-    <string name="book_item_description">Description</string>
+    <string name="book_item_genres">Genres:</string>
+    <string name="book_item_rating">Rating:</string>
+    <string name="book_item_description">Description:</string>
 
     <string name="profile_title">Profile</string>
     <string name="edit_profile">Edit Profile</string>
@@ -83,7 +83,7 @@
     <string name="post_author">Post Author</string>
 
 <!--    navigation strings-->
-    <string name="go_back_arrow">Go Back</string>
+    <string name="menu_navbar_home">Home</string>
     <string name="menu_navbar_profile">Profile</string>
     <string name="menu_navbar_my_posts">My Posts</string>
     <string name="menu_navbar_map">Map</string>
