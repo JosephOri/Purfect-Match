@@ -9,8 +9,8 @@ import com.example.bookworms.models.entities.BookEntity
 import com.example.bookworms.R
 import com.google.android.material.imageview.ShapeableImageView
 
-class BookAdapter (private val bookList: List<BookEntity>):
-                RecyclerView.Adapter<BookAdapter.BookViewHolder>(){
+class BookPostAdapter (private val bookList: List<BookEntity>):
+                RecyclerView.Adapter<BookPostAdapter.BookViewHolder>(){
 
     class BookViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val bookTitleTextView: TextView = itemView.findViewById(R.id.recyclerItemBookTitle)
@@ -23,7 +23,7 @@ class BookAdapter (private val bookList: List<BookEntity>):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.book_list_item, parent, false) // Use your list item layout
+            .inflate(R.layout.post_list_item, parent, false) // Use your list item layout
         return BookViewHolder(itemView)
     }
 

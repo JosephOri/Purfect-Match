@@ -3,8 +3,6 @@ package com.example.bookworms.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import android.os.Handler
 import android.os.Looper
@@ -33,16 +31,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var viewBinding: ActivityMainBinding
 
-    private val loginButton get() = viewBinding.loginButton
-    private val signupButton get() = viewBinding.signupButton
-    private val logoutButton get() = viewBinding.logoutButton
-    private val progressIndicator get() = viewBinding.spinnerProgressIndicator
-
-
     private val progressFragment = ProgressFragment()
 
-    private var loginButton: MaterialButton? = null
-    private var signupButton: MaterialButton? = null
     private var logoutButton: MaterialButton? = null
     private var profileButton: MaterialButton? = null
     private var homePageButton: MaterialButton? = null
@@ -64,19 +54,9 @@ class MainActivity : AppCompatActivity() {
             showWelcomeButtons()
 
         setEventListeners()
-        updateUI(auth.currentUser != null)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        progressIndicator.visibility = View.VISIBLE
-        updateUI(auth.currentUser != null)
-
     }
 
     private fun initButtons(){
-        loginButton = findViewById(R.id.loginButton)
-        signupButton = findViewById(R.id.signupButton)
         logoutButton = findViewById(R.id.logoutButton)
         profileButton = findViewById(R.id.profileButton)
         homePageButton = findViewById(R.id.homePageButton)
@@ -84,16 +64,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setEventListeners() {
-        loginButton?.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
-
-        signupButton?.setOnClickListener {
-            val intent = Intent(this, SignupActivity::class.java)
-            startActivity(intent)
-        }
-
         logoutButton?.setOnClickListener {
             auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)
@@ -115,6 +85,7 @@ class MainActivity : AppCompatActivity() {
 
         viewBinding.bottomNavigationView.setOnItemSelectedListener{
             when (it.itemId) {
+                R.id.homePage -> replaceFragment(HomePageFragment(), "homePage")
                 R.id.profilePage -> replaceFragment(ProfilePageFragment(), "profilePage")
                 R.id.addPostPage -> replaceFragment(AddPostFragment(), "addPostPage")
                 R.id.myPostsPage -> replaceFragment(MyPostsFragment(), "myPostsPage")
@@ -153,25 +124,16 @@ class MainActivity : AppCompatActivity() {
     
     private fun showLoggedInButtons() {
         logoutButton?.visibility = View.VISIBLE
-
         profileButton?.visibility = View.VISIBLE
         homePageButton?.visibility = View.VISIBLE
         aboutPageButton?.visibility = View.VISIBLE
 
-        loginButton?.visibility = View.INVISIBLE
-        signupButton?.visibility = View.INVISIBLE
     }
 
     private fun showWelcomeButtons() {
-        loginButton?.visibility = View.VISIBLE
-        signupButton?.visibility = View.VISIBLE
-
         logoutButton?.visibility = View.INVISIBLE
-
         profileButton?.visibility = View.INVISIBLE
         homePageButton?.visibility = View.INVISIBLE
         aboutPageButton?.visibility = View.INVISIBLE
     }
-
-
 }
