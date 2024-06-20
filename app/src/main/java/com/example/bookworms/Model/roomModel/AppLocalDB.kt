@@ -1,4 +1,4 @@
-package com.example.bookworms.models.roomModels
+package com.example.bookworms.models.roomModel
 
 
 import androidx.room.Database
@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.bookworms.BookWormsApp
 import com.example.bookworms.models.entities.User
-import com.example.bookworms.models.roomModels.dao.UserDao
+import com.example.bookworms.models.roomModel.dao.UserDao
 
 
 @Database(entities = [User::class], version = 1, exportSchema = false)

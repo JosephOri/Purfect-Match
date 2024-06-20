@@ -1,10 +1,10 @@
 package com.example.bookworms.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookworms.Model.entities.BookEntity
 import com.example.bookworms.R
@@ -26,7 +26,8 @@ class HomePageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profile_page, container, false)
+        val view = inflater.inflate(R.layout.fragment_home_page, container, false)
+
         return view
     }
 
@@ -39,7 +40,7 @@ class HomePageFragment : Fragment() {
 //    }
 //
 //    private fun fetchBooksFromDb(onSuccess: () -> Unit) {
-////        TODO: fetch books from firestore
+//        TODO: fetch books from firestore
 //    }
 
 }

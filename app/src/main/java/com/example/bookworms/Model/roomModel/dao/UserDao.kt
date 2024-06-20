@@ -1,4 +1,4 @@
-package com.example.bookworms.models.roomModels.dao
+package com.example.bookworms.models.roomModel.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

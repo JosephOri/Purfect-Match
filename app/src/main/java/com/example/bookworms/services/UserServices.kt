@@ -1,8 +1,8 @@
 package com.example.bookworms.services
 
+import com.example.bookworms.Model.firebaseModel.UserFirebaseModel
 import com.example.bookworms.models.entities.User
-import com.example.bookworms.models.firebaseModles.UserFirebaseModel
-import com.example.bookworms.models.roomModels.UserRoomModel
+import com.example.bookworms.models.roomModel.UserRoomModel
 import com.google.firebase.auth.FirebaseAuth
 
 class UserServices {
