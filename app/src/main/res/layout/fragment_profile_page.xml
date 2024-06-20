@@ -14,53 +14,57 @@
         android:id="@+id/profilePageFragmentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:scaleType="centerCrop"
         android:layout_gravity="center"
-        android:paddingHorizontal="20dp">
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:scaleType="centerCrop">
 
-        <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/profileCircleImage"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileCircleImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:src="@drawable/img_default_profile"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/profileUserNameLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:civ_border_color="@color/white"
+            app:civ_border_overlay="true"
             app:civ_border_width="2dp"
-            app:civ_border_overlay="true" />
+            app:layout_constraintBottom_toTopOf="@id/profileUserNameLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-        <LinearLayout android:id="@+id/profileUserNameLayout"
+        <LinearLayout
+            android:id="@+id/profileUserNameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintTop_toBottomOf="@id/profileCircleImage"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@id/profileEmailLayout"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/profileCircleImage">
 
-            <ImageView android:id="@+id/profileUserNameIcon"
+            <ImageView
+                android:id="@+id/profileUserNameIcon"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_profile"
                 android:contentDescription="@string/profile_image"
+                android:src="@drawable/ic_profile"
                 app:tint="@color/black" />
 
-            <TextView android:id="@+id/profileUserNameTitle"
+            <TextView
+                android:id="@+id/profileUserNameTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -69,46 +73,50 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/profile_user_name"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
-            <TextView android:id="@+id/profileUserName"
+            <TextView
+                android:id="@+id/profileUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:text="@string/full_name"
-                android:textSize="20sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/profileEmailLayout"
+        <LinearLayout
+            android:id="@+id/profileEmailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintTop_toBottomOf="@id/profileUserNameLayout"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@id/profileBioLayout"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/profileUserNameLayout">
 
-            <ImageView android:id="@+id/profileEmailIcon"
+            <ImageView
+                android:id="@+id/profileEmailIcon"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_email"
                 android:contentDescription="@string/profile_email"
+                android:src="@drawable/ic_email"
                 app:tint="@color/black" />
 
-            <TextView android:id="@+id/profileEmailTitle"
+            <TextView
+                android:id="@+id/profileEmailTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -117,9 +125,10 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/profile_email"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
-            <TextView android:id="@+id/profileEmailView"
+            <TextView
+                android:id="@+id/profileEmailView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -127,11 +136,12 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/profile_example_email"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/profileBioLayout"
+        <LinearLayout
+            android:id="@+id/profileBioLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -139,23 +149,25 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@id/profilePageLogoutButtonsLayout"
+            app:layout_constraintBottom_toTopOf="@id/profileDateJoinedLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profileEmailLayout">
 
-            <ImageView android:id="@+id/profileBioIcon"
+            <ImageView
+                android:id="@+id/profileBioIcon"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_info"
                 android:contentDescription="@string/profile_bio"
+                android:src="@drawable/ic_info"
                 app:tint="@color/black" />
 
-            <TextView android:id="@+id/profileBioTitle"
+            <TextView
+                android:id="@+id/profileBioTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -166,7 +178,8 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <TextView android:id="@+id/profileBioView"
+            <TextView
+                android:id="@+id/profileBioView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -178,19 +191,71 @@
 
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/profilePageLogoutButtonsLayout"
+        <LinearLayout
+            android:id="@+id/profileDateJoinedLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/profilePageLogoutButtonsLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileBioLayout">
+
+            <ImageView
+                android:id="@+id/profileDateJoinedIcon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/profile_date_joined"
+                android:src="@drawable/ic_calendar"
+                app:tint="@color/black" />
+
+            <TextView
+                android:id="@+id/profileDateJoinedTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/profile_date_joined"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/profileDateJoinedView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/profile_example_date_joined"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profilePageLogoutButtonsLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintTop_toBottomOf="@id/profileBioLayout"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/profileDateJoinedLayout">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/profileMyPostsButton"
@@ -200,9 +265,8 @@
                 android:text="@string/profile_my_posts"
                 android:textSize="12sp"
                 app:icon="@drawable/ic_my_post"
-                app:iconSize="18dp"
                 app:iconGravity="start"
-                />
+                app:iconSize="18dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/profilePageEditProfileBtn"
@@ -212,22 +276,20 @@
                 android:text="@string/edit_profile"
                 android:textSize="12sp"
                 app:icon="@drawable/ic_pen_edit"
-                app:iconSize="18dp"
                 app:iconGravity="start"
-                />
+                app:iconSize="18dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/profilePageLogoutBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/logout_button"
-                android:textSize="12sp"
-
                 android:layout_gravity="center"
+                android:text="@string/logout_button"
+
+                android:textSize="12sp"
                 app:icon="@drawable/ic_logout"
-                app:iconSize="18dp"
                 app:iconGravity="start"
-                 />
+                app:iconSize="18dp" />
 
         </LinearLayout>
 
