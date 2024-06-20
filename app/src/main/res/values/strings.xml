@@ -45,19 +45,33 @@
 
     <string name="profile_title">Profile</string>
     <string name="edit_profile">Edit Profile</string>
+
     <string name="profile_image">Profile Image</string>
     <string name="profile_image_description">Upload your profile image</string>
+    <string name="profile_change_image">Change your profile image</string>
+
     <string name="profile_user_name">User Name:</string>
+    <string name="profile_example_user_name">Israel Israeli</string>
+    <string name="profile_edit_user_name">Edit User Name</string>
+
     <string name="profile_date_joined">Joined At:</string>
     <string name="profile_example_date_joined">01/06/2024</string>
+    <string name="profile_edit_date_joined">Edit Date Joined</string>
+
     <string name="profile_bio">Bio:</string>
     <string name="profile_example_bio">I love reading books!</string>
+    <string name="profile_edit_bio">Edit Bio</string>
+
     <string name="profile_email">Email:</string>
     <string name="profile_example_email">Israel@israeli.com</string>
+    <string name="profile_edit_email">Edit Email</string>
+
     <string name="profile_address">Address:</string>
     <string name="profile_example_address">1234 Main St, Los Angeles, CA 90007</string>
-    <string name="logout_button">Logout</string>
+    <string name="profile_edit_address">Edit Address</string>
 
+
+    <string name="logout_button">Logout</string>
     <string name="profile_my_posts">My Posts</string>
 
 
@@ -95,6 +109,7 @@
 
     <string name="go_back_arrow">Go Back</string>
     <string name="about_page_content">"This is the \"BookWorms\" application. This app is a social media platform for book lovers, exchanging books and search for interesting books nearby. You can publish a post about your favorite book, write your review about it and rate. You can also pin a location for your post about a specific book. With that, you and other users can exchange books, for FREE! That is the whole point of \"BookWorms\" - Read, Publish, Exchange. "</string>
+    <string name="profile_save_changes">Save</string>
 
 
 </resources>

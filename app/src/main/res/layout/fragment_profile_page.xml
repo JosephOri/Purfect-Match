@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:background="@color/cream"
     android:orientation="vertical"
-    tools:context=".fragments.ProfilePageFragment"
-    android:id="@+id/profilePageFragment">
+    android:id="@+id/profilePageFragment"
+    tools:context=".fragments.ProfilePageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/profilePageFragmentLayout"
@@ -20,7 +20,7 @@
         android:scaleType="centerCrop">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profileCircleImage"
+            android:id="@+id/profileCircleImageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="8dp"
@@ -49,7 +49,7 @@
             app:layout_constraintBottom_toTopOf="@id/profileEmailLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileCircleImage">
+            app:layout_constraintTop_toBottomOf="@id/profileCircleImageView">
 
             <ImageView
                 android:id="@+id/profileUserNameIcon"
@@ -76,14 +76,14 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/profileUserName"
+                android:id="@+id/profileUserNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/full_name"
+                android:text="@string/profile_user_name"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -128,7 +128,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/profileEmailView"
+                android:id="@+id/profileEmailTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -179,7 +179,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/profileBioView"
+                android:id="@+id/profileBioTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -230,7 +230,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/profileDateJoinedView"
+                android:id="@+id/profileDateJoinedTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
