@@ -43,7 +43,7 @@ android {
         viewBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
     packaging {
         resources {
@@ -81,6 +81,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.fragment)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -94,9 +95,9 @@ dependencies {
     implementation(libs.androidx.room.compiler) {
         exclude(group = "com.intellij" , module = "annotations")
     }
-    implementation("org.jetbrains:annotations:23.0.0")
+    implementation(libs.annotations)
     implementation(platform(libs.firebase.bom))
-    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation(libs.google.firebase.auth.ktx)
 
 
 }
