@@ -30,6 +30,7 @@ googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
 playServicesMaps = "18.2.0"
 legacySupportV4 = "1.0.0"
 fragment = "1.8.0"
+firebaseFirestoreKtx = "25.0.0"
 
 
 [libraries]
@@ -70,6 +71,7 @@ circleimageview = { group = "de.hdodenhof", name = "circleimageview", version.re
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
 androidx-fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

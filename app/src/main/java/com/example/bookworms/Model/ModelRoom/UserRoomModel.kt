@@ -1,12 +1,12 @@
-package com.example.bookworms.models.roomModel
+package com.example.bookworms.Model.ModelRoom
 
 import androidx.lifecycle.LiveData
-import com.example.bookworms.models.entities.User
+import com.example.bookworms.Model.entities.User
 
 class UserRoomModel {
 
      fun addUser(user: User){
-         val db = AppLocalDB.getInstance().userDao().addUser(user)
+        AppLocalDB.getInstance().userDao().addUser(user)
      }
     fun updateUser(user: User){
         return AppLocalDB.getInstance().userDao().updateUser(user)
