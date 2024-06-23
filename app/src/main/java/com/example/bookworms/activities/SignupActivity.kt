@@ -7,8 +7,9 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.bookworms.R
-import com.example.bookworms.models.entities.User
+import com.example.bookworms.Model.entities.User
 import com.example.bookworms.utils.Utils
 import com.example.bookworms.viewModels.UserViewModel
 import com.google.android.material.button.MaterialButton
@@ -23,12 +24,12 @@ class SignupActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var userViewModel: UserViewModel
-
     private lateinit var cpi : CircularProgressIndicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
+
 
         auth = Firebase.auth
         if (auth.currentUser != null){
@@ -70,15 +71,20 @@ class SignupActivity : AppCompatActivity() {
             return
         }
         val user = User("", phone, name, email)
-        userViewModel = UserViewModel()
-        userViewModel.register(user, password, {
-            cpi.visibility = View.INVISIBLE
-            Toast.makeText(applicationContext, "User registered successfully", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }, {
-            Toast.makeText(applicationContext, "User registration failed", Toast.LENGTH_SHORT).show()
-        })
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        userViewModel.register(user, password){isSuccessful ->
+            if(isSuccessful){
+                Toast.makeText(applicationContext, "User registered successfully", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
+
+            if(!isSuccessful){
+                Toast.makeText(applicationContext, "User registration failed", Toast.LENGTH_SHORT).show()
+                return@register
+        }
+
+        }
 
     }
 

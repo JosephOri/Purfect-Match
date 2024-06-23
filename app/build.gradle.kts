@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
     alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin)
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -82,6 +84,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -92,13 +95,18 @@ dependencies {
 
     implementation(libs.circleimageview)
     implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.compiler) {
-        exclude(group = "com.intellij" , module = "annotations")
-    }
+
     implementation(libs.annotations)
     implementation(platform(libs.firebase.bom))
     implementation(libs.google.firebase.auth.ktx)
+    val room_version = "2.6.1"
+    val nav_version = "2.7.7"
 
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
 
 }
 
