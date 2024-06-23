@@ -40,7 +40,7 @@ class SignupActivity : AppCompatActivity() {
 
         cpi = findViewById(R.id.signupCircularProgressIndicator)
 
-        val nameField:TextInputEditText = findViewById(R.id.activity_signup_full_name_input)
+        val nameField:TextInputEditText = findViewById(R.id.activity_signup_user_name_input)
         val phoneField:TextInputEditText = findViewById(R.id.activity_signup_phone_input)
         val emailField:TextInputEditText = findViewById(R.id.activity_signup_email_input)
         val passwordField:TextInputEditText = findViewById(R.id.activity_signup_password_input)
