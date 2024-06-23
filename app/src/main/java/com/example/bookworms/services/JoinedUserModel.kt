@@ -37,4 +37,15 @@ class JoinedUserModel {
         }
 
     }
+
+    fun getUserByUid(uid: String, callback: (User) -> Unit ){
+        userFirebaseModel.getUserByUid(uid){userEntity ->
+            if(userEntity!= null){
+                BookWormsApp.getExecutorService().execute{
+                    userRoomModel.getUserById(uid.toInt())
+                }
+                callback(userEntity)
+            }
+        }
+    }
 }
