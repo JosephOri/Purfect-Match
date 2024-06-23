@@ -1,4 +1,4 @@
-package com.example.bookworms.models.entities
+package com.example.bookworms.Model.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Ignore

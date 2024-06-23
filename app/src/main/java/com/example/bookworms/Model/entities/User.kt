@@ -1,4 +1,4 @@
-package com.example.bookworms.models.entities
+package com.example.bookworms.Model.entities
 
 import androidx.annotation.NonNull
 import androidx.room.Entity
@@ -12,10 +12,11 @@ data class User(
     @NonNull
     var uid: String,
 
-    var phoneNumber: String,
+    var phone: String,
 
     var name: String,
 
     var email: String
+
 ): Serializable
 

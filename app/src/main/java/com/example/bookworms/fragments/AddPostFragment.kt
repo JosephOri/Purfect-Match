@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.bookworms.R
-import com.example.bookworms.models.entities.PostEntity
+import com.example.bookworms.Model.entities.PostEntity
 import com.google.android.material.textfield.TextInputEditText
 
 /**
