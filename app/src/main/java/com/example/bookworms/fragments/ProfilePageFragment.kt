@@ -51,9 +51,7 @@ class ProfilePageFragment : Fragment() {
 
     private fun initializeParameters(){
         Log.d("ProfilePageFragment", "initializeParameters")
-        firebaseAuth = FirebaseAuth.getInstance()
-        firestore = FirebaseFirestore.getInstance()
-        storageRef = FirebaseStorage.getInstance().reference
+        initializeFirebase()
 
         profileImageView = view?.findViewById(R.id.profileCircleImageView)
         profileUserNameTextView = view?.findViewById(R.id.profileUserNameTextView)
@@ -67,6 +65,17 @@ class ProfilePageFragment : Fragment() {
         logoutButton = view?.findViewById(R.id.profilePageLogoutBtn)
 
         Log.d("ProfilePageFragment", "initializeParameters: Done")
+    }
+
+    private fun initializeFirebase(){
+        Log.d("ProfilePageFragment", "initializeFirebase")
+        firebaseAuth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
+        storageRef = FirebaseStorage.getInstance().reference
+
+        val currentUser = firebaseAuth.currentUser
+        val uid = currentUser!!.uid
+        Log.d("ProfilePageFragment", "initializeFirebase: Done. firebaseAuth.currentUser.UID: $uid")
     }
 
 }
