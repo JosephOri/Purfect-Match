@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.bookworms.R
-import com.example.bookworms.Model.entities.User
+import com.example.bookworms.models.entities.User
 import com.example.bookworms.utils.Utils
 import com.example.bookworms.viewModels.UserViewModel
 import com.google.android.material.button.MaterialButton

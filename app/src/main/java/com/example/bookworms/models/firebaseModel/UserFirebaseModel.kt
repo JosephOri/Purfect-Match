@@ -1,4 +1,4 @@
-package com.example.bookworms.Model.firebaseModel
+package com.example.bookworms.models.firebaseModel
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

@@ -1,7 +1,7 @@
-package com.example.bookworms.Model.ModelRoom
+package com.example.bookworms.models.ModelRoom
 
 import androidx.lifecycle.LiveData
-import com.example.bookworms.Model.entities.User
+import com.example.bookworms.models.entities.User
 
 class UserRoomModel {
 

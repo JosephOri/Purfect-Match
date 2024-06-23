@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookworms.Model.entities.BookEntity
+import com.example.bookworms.models.entities.BookEntity
 import com.example.bookworms.R
 import com.example.bookworms.adapters.BookPostAdapter
 

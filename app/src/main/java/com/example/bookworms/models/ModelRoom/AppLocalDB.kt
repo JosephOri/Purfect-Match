@@ -1,12 +1,12 @@
-package com.example.bookworms.Model.ModelRoom
+package com.example.bookworms.models.ModelRoom
 
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.bookworms.BookWormsApp
-import com.example.bookworms.Model.entities.User
-import com.example.bookworms.Model.ModelRoom.dao.UserDao
+import com.example.bookworms.models.entities.User
+import com.example.bookworms.models.ModelRoom.dao.UserDao
 
 
 @Database(entities = [User::class], version = 2, exportSchema = false)
@@ -16,7 +16,7 @@ abstract class AppLocalDB : RoomDatabase() {
 
     companion object {
         // Define a singleton instance of the database
-        @Volatile private var instance: AppLocalDB? = null;
+        @Volatile private var instance: AppLocalDB? = null
         private const val DB_NAME = "BOOKWORMS_DB"
 
         fun getInstance(): AppLocalDB {

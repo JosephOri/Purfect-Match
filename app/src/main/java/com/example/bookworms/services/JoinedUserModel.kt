@@ -1,9 +1,9 @@
 package com.example.bookworms.services
 
 import com.example.bookworms.BookWormsApp
-import com.example.bookworms.Model.firebaseModel.UserFirebaseModel
-import com.example.bookworms.Model.entities.User
-import com.example.bookworms.Model.ModelRoom.UserRoomModel
+import com.example.bookworms.models.firebaseModel.UserFirebaseModel
+import com.example.bookworms.models.entities.User
+import com.example.bookworms.models.ModelRoom.UserRoomModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
