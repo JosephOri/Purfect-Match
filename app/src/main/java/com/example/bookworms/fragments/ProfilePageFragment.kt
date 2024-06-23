@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookworms.R
+import com.example.bookworms.viewModels.ProfileViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,6 +25,8 @@ class ProfilePageFragment : Fragment() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var storageRef: StorageReference
 
+    private lateinit var profileViewModel: ProfileViewModel
+
     private var profileImageView: CircleImageView? = null
     private var profileUserNameTextView: TextView? = null
     private var profileEmailTextView: TextView? = null
@@ -34,8 +38,6 @@ class ProfilePageFragment : Fragment() {
     private var editProfileButton: MaterialButton? = null
     private var logoutButton: MaterialButton? = null
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -46,12 +48,13 @@ class ProfilePageFragment : Fragment() {
 
         val view =  inflater.inflate(R.layout.fragment_profile_page, container, false)
         initializeParameters()
+        initializeFirebase()
         return view
     }
 
     private fun initializeParameters(){
         Log.d("ProfilePageFragment", "initializeParameters")
-        initializeFirebase()
+        profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
 
         profileImageView = view?.findViewById(R.id.profileCircleImageView)
         profileUserNameTextView = view?.findViewById(R.id.profileUserNameTextView)
@@ -67,7 +70,7 @@ class ProfilePageFragment : Fragment() {
         Log.d("ProfilePageFragment", "initializeParameters: Done")
     }
 
-    private fun initializeFirebase(){
+    private fun initializeFirebase() {
         Log.d("ProfilePageFragment", "initializeFirebase")
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
@@ -75,7 +78,21 @@ class ProfilePageFragment : Fragment() {
 
         val currentUser = firebaseAuth.currentUser
         val uid = currentUser!!.uid
-        Log.d("ProfilePageFragment", "initializeFirebase: Done. firebaseAuth.currentUser.UID: $uid")
+
+        // Use the profileViewModel to write a getUserById(uid) function that fetches the user data from the Firestore database.
+        profileViewModel.getUserByUid(uid) { userEntity ->
+            if (userEntity != null) {
+                Log.d("ProfilePageFragment", "initializeFirebase: userEntity: $userEntity")
+                profileUserNameTextView?.text = userEntity.name
+                profileEmailTextView?.text = userEntity.email
+                profilePhoneTextView?.text = userEntity.phone
+                profileBioTextView?.text = "I Love Books"
+                profileDateJoinedTextView?.text = currentUser.metadata?.creationTimestamp.toString()
+            }
+            Log.d("ProfilePageFragment", "firebaseAuth.currentUser.UID: $uid")
+            Log.d("ProfilePageFragment","initializeFirebase: Done. firebaseAuth.currentUser.UID: $uid"
+            )
+        }
     }
 
 }
