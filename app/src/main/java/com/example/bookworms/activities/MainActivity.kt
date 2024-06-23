@@ -48,10 +48,14 @@ class MainActivity : AppCompatActivity() {
         initButtons()
 
         val currentUser = auth.currentUser
-        if (currentUser != null)
-            showLoggedInButtons()
-        else
-            showWelcomeButtons()
+        if(currentUser != null) {
+            Log.d("MainActivity", "Current user details: displayName: ${currentUser.displayName}, email: ${currentUser.email}, UID: ${currentUser.uid}, phoneNumber: ${currentUser.phoneNumber}")
+        } else {
+            Log.d("MainActivity", "No user logged in")
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         setEventListeners()
     }
@@ -120,20 +124,5 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.remove(progressFragment)
         fragmentTransaction.commit()
-    }
-    
-    private fun showLoggedInButtons() {
-        logoutButton?.visibility = View.VISIBLE
-        profileButton?.visibility = View.VISIBLE
-        homePageButton?.visibility = View.VISIBLE
-        aboutPageButton?.visibility = View.VISIBLE
-
-    }
-
-    private fun showWelcomeButtons() {
-        logoutButton?.visibility = View.INVISIBLE
-        profileButton?.visibility = View.INVISIBLE
-        homePageButton?.visibility = View.INVISIBLE
-        aboutPageButton?.visibility = View.INVISIBLE
     }
 }

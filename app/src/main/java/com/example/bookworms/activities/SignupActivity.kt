@@ -115,6 +115,11 @@ class SignupActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+
+    private fun initializeParameters(){
+
+    }
 }
 
 
