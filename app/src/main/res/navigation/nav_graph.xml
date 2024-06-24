@@ -10,7 +10,17 @@
         android:id="@+id/homePageFragment"
         android:name="com.example.bookworms.fragments.HomePageFragment"
         android:label="@string/activity_main_title"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+
+        <action
+            android:id="@+id/action_homePageFragment_to_profilePageFragment"
+            app:destination="@id/profilePageFragment" />
+
+        <action
+            android:id="@+id/action_homePageFragment_to_myPostsFragment"
+            app:destination="@id/myPostsFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/profilePageFragment"
@@ -46,7 +56,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/mapFragment"
+        android:id="@+id/mapsFragment"
         android:name="com.example.bookworms.fragments.MapsFragment"
         android:label="@string/menu_navbar_map"
         tools:layout="@layout/fragment_maps">
