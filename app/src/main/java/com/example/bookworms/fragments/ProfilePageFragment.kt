@@ -1,5 +1,6 @@
 package com.example.bookworms.fragments
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,6 +20,8 @@ import com.google.firebase.storage.StorageReference
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Date
+import java.util.Locale
 
 
 class ProfilePageFragment : Fragment() {
@@ -87,7 +90,12 @@ class ProfilePageFragment : Fragment() {
                     profileEmailTextView?.text = userEntity.email
                     profilePhoneTextView?.text = userEntity.phone
                     profileBioTextView?.text = "I Love Books"
-                    profileDateJoinedTextView?.text = currentUser.metadata?.creationTimestamp.toString()
+
+                    val creationTimestamp = currentUser.metadata?.creationTimestamp
+                    val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                    val creationDate = sdf.format(Date(creationTimestamp!!))
+                    Log.d("ProfilePageFragment", "User joined on: $creationDate")
+                    profileDateJoinedTextView?.text = creationDate
                 } else {
                     Log.d("ProfilePageFragment", "Failed to retrieve user data for UID: $uid")
                 }
