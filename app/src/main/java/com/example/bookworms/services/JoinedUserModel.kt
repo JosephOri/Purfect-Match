@@ -1,5 +1,6 @@
 package com.example.bookworms.services
 
+import android.util.Log
 import com.example.bookworms.BookWormsApp
 import com.example.bookworms.models.firebaseModel.UserFirebaseModel
 import com.example.bookworms.models.entities.User
@@ -20,18 +21,21 @@ class JoinedUserModel {
         userFirebaseModel.register(user.email,password){ isSuccessful ->
             if(isSuccessful){
                 val uid =auth.currentUser?.uid
-                userFirebaseModel.userCollection(user.email,user.uid,user.name,user.phone){ success->
-                    if(success){
-                        BookWormsApp.getExecutorService().execute{
-                            if (uid != null) {
-                                user.uid=uid
+                if(uid!=null) {
+                    user.uid = uid
+                    userFirebaseModel.userCollection(user.email, user.uid, user.name, user.phone ) { success ->
+                        if (success) {
+                            BookWormsApp.getExecutorService().execute {
                                 userRoomModel.addUser(user)
                             }
                         }
+                        callback(success)
                     }
-                    callback(success)
-
+                } else {
+                    callback(false)
                 }
+            } else{
+                callback(false)
             }
             callback(isSuccessful)
         }
@@ -39,12 +43,14 @@ class JoinedUserModel {
     }
 
     fun getUserByUid(uid: String, callback: (User) -> Unit ){
-        userFirebaseModel.getUserByUid(uid){userEntity ->
-            if(userEntity!= null){
-                BookWormsApp.getExecutorService().execute{
-                    userRoomModel.getUserById(uid.toInt())
+        userFirebaseModel.getUserByUid(uid) { userEntity ->
+            if (userEntity != null) {
+                BookWormsApp.getExecutorService().execute {
+                    userRoomModel.getUserById(uid)
                 }
                 callback(userEntity)
+            } else {
+                Log.d("JoinedUserModel", "User not found")
             }
         }
     }

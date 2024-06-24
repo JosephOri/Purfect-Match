@@ -6,6 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.example.bookworms.models.entities.User
 
@@ -25,8 +26,9 @@ interface UserDao {
     @Query("SELECT * FROM users ORDER BY uid ASC")
     fun readAllData(): LiveData<List<User>>
 
+    @Transaction
     @Query("SELECT * FROM users WHERE uid = :uid")
-    fun getUserById(uid: Int): LiveData<User>
+    fun getUserById(uid: String): User
 
     @Query("SELECT * FROM users WHERE email = :email")
     fun getUserByEmail(email: String): User

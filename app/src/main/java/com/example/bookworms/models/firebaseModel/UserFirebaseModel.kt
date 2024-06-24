@@ -1,5 +1,6 @@
 package com.example.bookworms.models.firebaseModel
 
+import android.util.Log
 import com.example.bookworms.models.entities.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -36,7 +37,7 @@ class UserFirebaseModel {
         callback: (Boolean) -> Unit
     ) {
         val db = Firebase.firestore
-        val docRef = db.collection("users").document()
+        val docRef = db.collection("users").document(uid)
         val data = hashMapOf(
             "name" to name,
             "email" to email,
@@ -44,25 +45,24 @@ class UserFirebaseModel {
             "uid" to uid
         )
         docRef.set(data).addOnSuccessListener {
-            println("User uploaded successfully")
+            Log.d("UserFirebaseModel", "User uploaded successfully with UID: $uid")
             callback(true)
         }.addOnFailureListener { exception ->
-            println("Error uploading user: ${exception.message}")
+            Log.d("UserFirebaseModel", "Error uploading user: ${exception.message}")
             callback(false)
         }
     }
 
     fun getUserByUid(uid: String, callback: (User?) -> Unit) {
         val db = Firebase.firestore
-        val usersCollection = db.collection("users")
-        println("Getting user by UID: $uid")
+        val userDocument = db.collection("users").document(uid)
+        Log.d("UserFirebaseModel", "Getting user by UID: $uid")
 
-        usersCollection.whereEqualTo("uid", uid)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                if (!querySnapshot.isEmpty) {
-                    println("Document found with UID $uid. querySnapshot is not empty.")
-                    val documentSnapshot = querySnapshot.documents.first()
+        userDocument.get()
+            .addOnSuccessListener { documentSnapshot ->
+                Log.d("UserFirebaseModel", "snapshot data: ${documentSnapshot.data}")
+                if (documentSnapshot.exists()) {
+//                    val documentSnapshot = querySnapshot.documents.first()
                     val userName = documentSnapshot.getString("name") ?: ""
                     val email = documentSnapshot.getString("email") ?: ""
                     val phone = documentSnapshot.getString("phone") ?: ""
@@ -76,12 +76,12 @@ class UserFirebaseModel {
 
                     callback(userEntity)
                 } else {
-                    println("No document found with UID $uid. querySnapshot is empty.")
+                    Log.d("UserFirebaseModel", "No document found with UID $uid")
                     callback(null)
                 }
             }
             .addOnFailureListener { exception ->
-                println("Error getting user by UID: ${exception.message}")
+                Log.d("UserFirebaseModel", "Error fetching user document: ${exception.message}")
                 callback(null)
             }
     }

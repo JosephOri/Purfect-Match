@@ -10,12 +10,9 @@ import java.io.Serializable
 data class User(
     @PrimaryKey
     var uid: String,
-
-    var phone: String,
-
     var name: String,
-
-    var email: String
+    var email: String,
+    var phone: String,
 
 ): Serializable
 

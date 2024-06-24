@@ -17,7 +17,7 @@ class UserRoomModel {
     fun readAllData(): LiveData<List<User>> {
         return AppLocalDB.getInstance().userDao().readAllData()
     }
-    fun getUserById(uid: Int): LiveData<User> {
+    fun getUserById(uid: String): User{
         return AppLocalDB.getInstance().userDao().getUserById(uid)
     }
     fun getUserByEmail(email: String): User {
