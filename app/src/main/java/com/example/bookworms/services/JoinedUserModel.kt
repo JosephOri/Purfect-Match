@@ -54,4 +54,8 @@ class JoinedUserModel {
             }
         }
     }
+
+    fun logout(){
+        auth.signOut()
+    }
 }
