@@ -1,5 +1,6 @@
 package com.example.bookworms.fragments
 
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +11,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.bookworms.R
+import com.example.bookworms.activities.LoginActivity
+import com.example.bookworms.activities.MainActivity
 import com.example.bookworms.viewModels.ProfileViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -53,6 +57,40 @@ class ProfilePageFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupClickListeners()
+
+    }
+
+    private fun setupClickListeners(){
+        val navController = findNavController()
+
+        myPostsButton?.setOnClickListener {
+            Log.d("ProfilePageFragment", "Current destination: ${navController.currentDestination}")
+
+            if (navController.currentDestination?.id == R.id.profilePageFragment) {
+                navController.navigate(R.id.action_profilePageFragment_to_myPostsFragment)
+            } else {
+                Log.e("ProfilePageFragment", "Invalid navigation state")
+            }
+        }
+
+        editProfileButton?.setOnClickListener {
+            Log.d("ProfilePageFragment", "Current destination: ${navController.currentDestination}")
+
+            if (navController.currentDestination?.id == R.id.profilePageFragment) {
+                navController.navigate(R.id.action_profilePageFragment_to_editProfilePageFragment)
+            } else {
+                Log.e("ProfilePageFragment", "Invalid navigation state")
+            }        }
+
+        logoutButton?.setOnClickListener {
+            profileViewModel.logout()
+        }
+    }
+
+
     private fun initializeParameters(view: View){
         profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
 
@@ -94,7 +132,6 @@ class ProfilePageFragment : Fragment() {
                     val creationTimestamp = currentUser.metadata?.creationTimestamp
                     val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                     val creationDate = sdf.format(Date(creationTimestamp!!))
-                    Log.d("ProfilePageFragment", "User joined on: $creationDate")
                     profileDateJoinedTextView?.text = creationDate
                 } else {
                     Log.d("ProfilePageFragment", "Failed to retrieve user data for UID: $uid")
