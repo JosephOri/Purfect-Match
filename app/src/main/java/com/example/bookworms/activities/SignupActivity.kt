@@ -48,6 +48,10 @@ class SignupActivity : AppCompatActivity() {
             uri?.let {
                 imageUri = it
                 Picasso.get().load(imageUri).into(profileImageView)
+                Toast.makeText(this, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
+                Log.d("SignupActivity", "Image URL: ${it.path}")
+                Log.d("SignupActivity", "Image Url Ref: $imageUrlRef")
+
                 //uploadImageFromPicasso()
                 //uploadImage()
             }
@@ -84,7 +88,8 @@ class SignupActivity : AppCompatActivity() {
         if(!isInputValid){
             return
         }
-        val user = User("", phone, name, email)
+
+        val user = User("", name, email, phone, imageUri.toString())
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         userViewModel.register(user, password){isSuccessful ->
             if(isSuccessful){

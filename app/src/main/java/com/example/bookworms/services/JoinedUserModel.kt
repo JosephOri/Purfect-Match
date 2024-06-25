@@ -20,7 +20,7 @@ class JoinedUserModel {
         userFirebaseModel.register(user.email,password){ isSuccessful ->
             if(isSuccessful){
                 val uid =auth.currentUser?.uid
-                userFirebaseModel.userCollection(user.email,user.uid,user.name,user.phone){ success->
+                userFirebaseModel.userCollection(user.uid, user.name, user.email, user.phone, user.profileImg){ success->
                     if(success){
                         BookWormsApp.getExecutorService().execute{
                             if (uid != null) {

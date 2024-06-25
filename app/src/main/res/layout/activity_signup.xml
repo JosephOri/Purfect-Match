@@ -74,7 +74,7 @@
                 android:text="@string/upload_image"
                 android:backgroundTint="@color/design_default_color_primary"
 
-                />
+                tools:ignore="RtlHardcoded" />
 
             <ImageView android:id="@+id/activity_signup_profile_image"
                 android:layout_width="50dp"

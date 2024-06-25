@@ -27,19 +27,21 @@ class UserFirebaseModel {
 
     }
     fun userCollection(
-        email: String,
         uid: String,
         name: String,
+        email: String,
         phone:String,
+        profileImg: String,
         callback: (Boolean) -> Unit
     ) {
         val db = Firebase.firestore
         val docRef = db.collection("users").document()
         val data = hashMapOf(
+            "uid" to uid,
             "name" to name,
             "email" to email,
             "phone" to phone,
-            "uid" to uid
+            "profileImg" to profileImg
         )
         docRef.set(data).addOnSuccessListener {
             println("User uploaded successfully")
