@@ -48,6 +48,7 @@ class SignupActivity : AppCompatActivity() {
             uri?.let {
                 imageUri = it
                 Picasso.get().load(imageUri).into(profileImageView)
+                // set the same image in an ImageView with id of "activityMainProfileImageView" in the main_activity.xml layout
                 Toast.makeText(this, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
                 Log.d("SignupActivity", "Image URL: ${it.path}")
                 Log.d("SignupActivity", "Image Url Ref: $imageUrlRef")
