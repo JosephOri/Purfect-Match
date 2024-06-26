@@ -2,11 +2,6 @@ package com.example.bookworms.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import android.os.Handler
-import android.os.Looper
-import android.widget.Button
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -19,11 +14,12 @@ import com.example.bookworms.fragments.HomePageFragment
 import com.example.bookworms.fragments.MapsFragment
 import com.example.bookworms.fragments.MyPostsFragment
 import com.example.bookworms.fragments.ProfilePageFragment
-import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.example.bookworms.viewModels.UserViewModel
 
 import com.example.bookworms.fragments.ProgressFragment
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -37,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private var profileButton: MaterialButton? = null
     private var homePageButton: MaterialButton? = null
     private var aboutPageButton: MaterialButton? = null
+    private lateinit var userViewModel: UserViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,22 +42,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
         auth = FirebaseAuth.getInstance()
 
-        initButtons()
+        initParameters()
 
         val currentUser = auth.currentUser
-        if (currentUser != null)
-            showLoggedInButtons()
-        else
-            showWelcomeButtons()
+        if (currentUser != null) showLoggedInButtons()
+        else showWelcomeButtons()
 
         setEventListeners()
+        loadUserProfileImage()
     }
 
-    private fun initButtons(){
+    private fun initParameters(){
         logoutButton = findViewById(R.id.logoutButton)
         profileButton = findViewById(R.id.profileButton)
         homePageButton = findViewById(R.id.homePageButton)
         aboutPageButton = findViewById(R.id.aboutPageButton)
+        userViewModel = UserViewModel()
     }
 
     private fun setEventListeners() {
@@ -135,5 +132,17 @@ class MainActivity : AppCompatActivity() {
         profileButton?.visibility = View.INVISIBLE
         homePageButton?.visibility = View.INVISIBLE
         aboutPageButton?.visibility = View.INVISIBLE
+    }
+
+    private fun loadUserProfileImage(){
+        val currentUser = auth.currentUser
+        currentUser?.let { user ->
+            userViewModel.getUserByUid(user.uid) { userEntity ->
+                if (userEntity != null) {
+                    Picasso.get().load(userEntity.profileImg).placeholder(R.drawable.img_default_profile).into(viewBinding.activityMainProfileImageView)
+
+                }
+            }
+        }
     }
 }

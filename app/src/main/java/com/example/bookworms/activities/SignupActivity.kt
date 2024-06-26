@@ -91,7 +91,6 @@ class SignupActivity : AppCompatActivity() {
         }
 
         val user = User("", name, email, phone, imageUri.toString())
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         userViewModel.register(user, password){isSuccessful ->
             if(isSuccessful){
                 Toast.makeText(applicationContext, "User registered successfully", Toast.LENGTH_SHORT).show()
@@ -101,6 +100,7 @@ class SignupActivity : AppCompatActivity() {
 
             if(!isSuccessful){
                 Toast.makeText(applicationContext, "User registration failed", Toast.LENGTH_SHORT).show()
+                //uploadImage()
                 return@register
             }
 
@@ -161,39 +161,30 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    /*private fun uploadImage(){
+    private fun uploadImage(){
         imageUri?.let{ uri ->
-            Log.d("SignupActivity", "Image URI: $uri")
-
-            Log.d("SignupActivity", "File exists")
+            Log.d("SignupActivity", "uploadImage(): Image URI: $uri")
 
             val storageReference = FirebaseStorage.getInstance().getReference("profile_images/${System.currentTimeMillis()}.jpg")
+            Log.d("SignupActivity", "uploadImage(): storageReference.name: ${storageReference.name}")
+            Log.d("SignupActivity", "uploadImage(): storageReference.path: ${storageReference.path}")
+            Log.d("SignupActivity", "uploadImage(): storageReference.downloadUrl: ${storageReference.downloadUrl}")
+            Log.d("SignupActivity", "uploadImage(): storageReference.bucket: ${storageReference.bucket}")
+            Log.d("SignupActivity", "uploadImage(): storageReference.root: ${storageReference.root}")
+            Log.d("SignupActivity", "uploadImage(): storageReference.parent: ${storageReference.parent}")
+
             storageReference.putFile(uri).addOnSuccessListener { taskSnapshot ->
-                // Image uploaded successfully
-                Toast.makeText(this, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
-                Log.d("SignupActivity", "Image uploaded successfully")
-                Log.d("SignupActivity", "Image URL: ${taskSnapshot.metadata?.path}")
-
-                // Get the download URL of the uploaded image
-                storageReference.downloadUrl.addOnSuccessListener { downloadUri ->
-                    val imageUrl = downloadUri.toString()
-                    imageUrlRef = imageUrl
-                    // Load the image into your ImageView using Glide
-                    Glide.with(this).load(imageUrl).into(profileImageView)
-
+                Log.d("SignupActivity", "uploadImage(): Image uploaded successfully")
+                Toast.makeText(this, "Image uploaded", Toast.LENGTH_SHORT).show()
+                taskSnapshot.storage.downloadUrl.addOnSuccessListener { downloadUri ->
+                    imageUrlRef = downloadUri.toString()
                 }.addOnFailureListener { e ->
-                    Toast.makeText(this, "Upload failed: ${e.message}", Toast.LENGTH_SHORT).show()
-                }.addOnCompleteListener { e ->
-                    Toast.makeText(this, "Error occurred. Is Completed?: ${e.isComplete}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Image upload failed: ${e.message}", Toast.LENGTH_SHORT ).show()
                 }
-
-            }.addOnFailureListener{ e ->
-                Toast.makeText(this, "Upload failed: ${e.message}", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener { e ->
+                Log.e("SignupActivity", "uploadImage(): Image upload failed: ${e.message}")
+                Toast.makeText(applicationContext,"Image upload failed: ${e.message}",Toast.LENGTH_SHORT).show()
             }
-
         }
     }
-    private fun uploadImageFromPicasso(){
-        Picasso.get().load(imageUri).into(profileImageView)
-    }*/
 }
