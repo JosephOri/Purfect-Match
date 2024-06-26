@@ -1,5 +1,7 @@
 package com.example.bookworms.Model.firebaseModel
 
+import android.util.Log
+import com.example.bookworms.Model.entities.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -26,16 +28,10 @@ class UserFirebaseModel {
             }
 
     }
-    fun userCollection(
-        uid: String,
-        name: String,
-        email: String,
-        phone:String,
-        profileImg: String,
-        callback: (Boolean) -> Unit
-    ) {
+    fun userCollection(uid: String, name: String, email: String,
+                        phone:String, profileImg: String, callback: (Boolean) -> Unit) {
         val db = Firebase.firestore
-        val docRef = db.collection("users").document()
+        val docRef = db.collection("users").document(uid)
         val data = hashMapOf(
             "uid" to uid,
             "name" to name,
@@ -52,4 +48,28 @@ class UserFirebaseModel {
         }
     }
 
+    fun getUserByUid(uid: String, callback: (User?) -> Unit) {
+        val db = Firebase.firestore
+        val userDocument = db.collection("users").document(uid)
+        Log.d("UserFirebaseModel", "getUserByUid() - Uid is: $uid")
+        userDocument.get()
+            .addOnSuccessListener { documentSnapshot ->
+                Log.d(
+                    "UserFirebaseModel",
+                    "getUserByUid() - DocumentSnapshot.data is: ${documentSnapshot.data}"
+                )
+                if (documentSnapshot.data != null) {
+                    val name = documentSnapshot.getString("name") ?: ""
+                    val email = documentSnapshot.getString("email") ?: ""
+                    val phone = documentSnapshot.getString("phone") ?: ""
+                    val profileImg = documentSnapshot.getString("profileImg") ?: ""
+                    val user = User(uid, name, email, phone, profileImg)
+                    callback(user)
+                } else {
+                    Log.d("UserFirebaseModel", "getUserByUid() - User not found")
+                    callback(null)
+                }
+            }
+
+    }
 }

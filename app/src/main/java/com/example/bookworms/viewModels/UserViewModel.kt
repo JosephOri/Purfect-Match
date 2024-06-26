@@ -11,4 +11,12 @@ class UserViewModel :ViewModel(){
         joinedUserModel.register(user, password, callback)
     }
 
+    fun getUserByUid(uid: String, callback: (User) -> Unit){
+        joinedUserModel.getUserByUid(uid, callback)
+    }
+
+    fun logout(){
+        joinedUserModel.logout()
+    }
+
 }
