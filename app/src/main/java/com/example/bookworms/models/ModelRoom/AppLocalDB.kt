@@ -9,7 +9,7 @@ import com.example.bookworms.models.entities.User
 import com.example.bookworms.models.ModelRoom.dao.UserDao
 
 
-@Database(entities = [User::class], version = 2, exportSchema = false)
+@Database(entities = [User::class], version = 4, exportSchema = false)
 abstract class AppLocalDB : RoomDatabase() {
 
     abstract fun userDao(): UserDao
@@ -26,6 +26,7 @@ abstract class AppLocalDB : RoomDatabase() {
                     AppLocalDB::class.java,
                     DB_NAME
                 )
+                    .fallbackToDestructiveMigration()
                     .build()
             }
         }

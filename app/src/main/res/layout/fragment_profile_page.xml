@@ -344,22 +344,6 @@
 
         </LinearLayout>
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/mainFrameLayout"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            tools:layout_editor_absoluteX="110dp"
-            app:defaultNavHost="true"
-            android:layout_weight="1"
-            app:navGraph="@navigation/nav_graph"
-
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/profilePageButtonsLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

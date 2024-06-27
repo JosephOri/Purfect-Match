@@ -23,8 +23,9 @@ class ProfileViewModel: ViewModel() {
         }
     }
 
-    fun logout(){
+    fun logout(callback: ()-> Unit){
         usersModel.logout()
+        callback()
     }
 
 

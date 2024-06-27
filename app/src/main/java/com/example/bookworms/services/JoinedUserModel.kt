@@ -15,9 +15,11 @@ class JoinedUserModel {
     private val userFirebaseModel: UserFirebaseModel = UserFirebaseModel()
     private lateinit var auth: FirebaseAuth
 
+    init {
+        auth = Firebase.auth
+    }
 
     fun register(user: User, password: String,callback: (Boolean) -> Unit ){
-        auth = Firebase.auth
         userFirebaseModel.register(user.email,password){ isSuccessful ->
             if(isSuccessful){
                 val uid =auth.currentUser?.uid

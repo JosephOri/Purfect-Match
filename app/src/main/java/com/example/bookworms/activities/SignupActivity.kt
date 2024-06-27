@@ -70,7 +70,7 @@ class SignupActivity : AppCompatActivity() {
         if(!isInputValid){
             return
         }
-        val user = User("", phone, name, email)
+        val user = User("", name, email, phone)
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         userViewModel.register(user, password){isSuccessful ->
             if(isSuccessful){

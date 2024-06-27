@@ -86,7 +86,11 @@ class ProfilePageFragment : Fragment() {
             }        }
 
         logoutButton?.setOnClickListener {
-            profileViewModel.logout()
+            profileViewModel.logout {
+                val intent = Intent(activity, LoginActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
         }
     }
 
