@@ -51,10 +51,6 @@ class SignupActivity : AppCompatActivity() {
                 // set the same image in an ImageView with id of "activityMainProfileImageView" in the main_activity.xml layout
                 Toast.makeText(this, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
                 Log.d("SignupActivity", "Image URL: ${it.path}")
-                Log.d("SignupActivity", "Image Url Ref: $imageUrlRef")
-
-                //uploadImageFromPicasso()
-                //uploadImage()
             }
         }
 
@@ -90,6 +86,7 @@ class SignupActivity : AppCompatActivity() {
             return
         }
 
+        userViewModel = UserViewModel()
         val user = User("", name, email, phone, imageUri.toString())
         userViewModel.register(user, password){isSuccessful ->
             if(isSuccessful){
@@ -139,6 +136,7 @@ class SignupActivity : AppCompatActivity() {
     private fun initParameters(){
         cpi = findViewById(R.id.signupCircularProgressIndicator)
 
+
         fullNameInputTextView = findViewById(R.id.activity_signup_full_name_input)
         phoneInputTextView = findViewById(R.id.activity_signup_phone_input)
         emailInputTextView = findViewById(R.id.activity_signup_email_input)
@@ -177,7 +175,7 @@ class SignupActivity : AppCompatActivity() {
                 Log.d("SignupActivity", "uploadImage(): Image uploaded successfully")
                 Toast.makeText(this, "Image uploaded", Toast.LENGTH_SHORT).show()
                 taskSnapshot.storage.downloadUrl.addOnSuccessListener { downloadUri ->
-                    imageUrlRef = downloadUri.toString()
+                    imageUri = downloadUri
                 }.addOnFailureListener { e ->
                     Toast.makeText(applicationContext, "Image upload failed: ${e.message}", Toast.LENGTH_SHORT ).show()
                 }
