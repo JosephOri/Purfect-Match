@@ -139,8 +139,13 @@ class MainActivity : AppCompatActivity() {
         currentUser?.let { user ->
             userViewModel.getUserByUid(user.uid) { userEntity ->
                 if (userEntity != null) {
-                    Picasso.get().load(userEntity.profileImg).placeholder(R.drawable.img_default_profile).into(viewBinding.activityMainProfileImageView)
-
+                    if (userEntity.profileImg.isNotEmpty()) {
+                        Picasso.get().load(userEntity.profileImg).placeholder(R.drawable.img_default_profile).into(viewBinding.activityMainProfileImageView)
+                    } else {
+                        // Handle case where profileImg is null or empty
+                        // For example, you can load a default image
+                        Picasso.get().load(R.drawable.img_default_profile).into(viewBinding.activityMainProfileImageView)
+                    }
                 }
             }
         }
