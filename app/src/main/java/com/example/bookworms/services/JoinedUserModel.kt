@@ -13,11 +13,7 @@ class JoinedUserModel {
 
     private val userRoomModel: UserRoomModel = UserRoomModel()
     private val userFirebaseModel: UserFirebaseModel = UserFirebaseModel()
-    private lateinit var auth: FirebaseAuth
-
-    init {
-        auth = Firebase.auth
-    }
+    private var auth: FirebaseAuth = Firebase.auth
 
     fun register(user: User, password: String,callback: (Boolean) -> Unit ){
         userFirebaseModel.register(user.email,password){ isSuccessful ->
@@ -25,7 +21,7 @@ class JoinedUserModel {
                 val uid =auth.currentUser?.uid
                 if(uid!=null) {
                     user.uid = uid
-                    userFirebaseModel.userCollection(user.email, user.uid, user.name, user.phone ) { success ->
+                    userFirebaseModel.userCollection(user.uid, user.name, user.email, user.phone, user.profileImg) { success ->
                         if (success) {
                             BookWormsApp.getExecutorService().execute {
                                 userRoomModel.addUser(user)
