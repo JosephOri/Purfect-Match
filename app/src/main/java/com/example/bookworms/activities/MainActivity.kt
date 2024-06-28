@@ -4,21 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.bookworms.R
 import com.example.bookworms.databinding.ActivityMainBinding
+import com.example.bookworms.databinding.FragmentProfilePageBinding
+import com.example.bookworms.viewModels.UserViewModel
+
 import com.example.bookworms.fragments.ProgressFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var viewBinding: ActivityMainBinding
+    private lateinit var profileViewBinding: FragmentProfilePageBinding
 
     private val progressFragment = ProgressFragment()
 
@@ -26,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private var profileButton: MaterialButton? = null
     private var homePageButton: MaterialButton? = null
     private var aboutPageButton: MaterialButton? = null
+    private lateinit var userViewModel: UserViewModel
 
     private var bottomNavBar : BottomNavigationView? = null
 
@@ -49,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setEventListeners()
+        loadUserProfileImage()
     }
 
     private fun initParameters(){
@@ -58,6 +64,9 @@ class MainActivity : AppCompatActivity() {
         aboutPageButton = findViewById(R.id.aboutPageButton)
 
         bottomNavBar = findViewById(R.id.bottomNavigationView)
+        userViewModel = UserViewModel()
+
+        profileViewBinding = FragmentProfilePageBinding.inflate(layoutInflater)
     }
 
     private fun setEventListeners() {
@@ -83,10 +92,11 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             logoutButton?.setOnClickListener {
-                auth.signOut()
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
+                userViewModel.logout {
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    this.finish()
+                }
             }
 
             profileButton?.setOnClickListener {
@@ -111,5 +121,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideProgressFragment() {
         supportFragmentManager.beginTransaction().remove(progressFragment).commit()
+    }
+
+    private fun loadUserProfileImage(){
+        val currentUser = auth.currentUser
+        currentUser?.let { user ->
+            userViewModel.getUserByUid(user.uid) { userEntity ->
+                if (userEntity != null) {
+                    if (userEntity.profileImg.isNotEmpty()) {
+                        Picasso.get().load(userEntity.profileImg).placeholder(R.drawable.img_default_profile).into(profileViewBinding.profileCircleImageView)
+                    } else {
+                        // Handle case where profileImg is null or empty
+                        // For example, you can load a default image
+                        Picasso.get().load(R.drawable.img_default_profile).into(profileViewBinding.profileCircleImageView)
+                    }
+                }
+            }
+        }
     }
 }

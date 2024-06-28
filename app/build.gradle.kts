@@ -86,6 +86,7 @@ dependencies {
     implementation(libs.androidx.fragment)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.storage.ktx)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -109,5 +110,8 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
 
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+    implementation(libs.picasso)
 }
 
