@@ -13,7 +13,6 @@ import com.example.bookworms.viewModels.UserViewModel
 
 import com.example.bookworms.fragments.ProgressFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.delay
@@ -26,10 +25,6 @@ class MainActivity : AppCompatActivity() {
 
     private val progressFragment = ProgressFragment()
 
-    private var logoutButton: MaterialButton? = null
-    private var profileButton: MaterialButton? = null
-    private var homePageButton: MaterialButton? = null
-    private var aboutPageButton: MaterialButton? = null
     private lateinit var userViewModel: UserViewModel
 
     private var bottomNavBar : BottomNavigationView? = null
@@ -58,11 +53,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initParameters(){
-        logoutButton = findViewById(R.id.logoutButton)
-        profileButton = findViewById(R.id.profileButton)
-        homePageButton = findViewById(R.id.homePageButton)
-        aboutPageButton = findViewById(R.id.aboutPageButton)
-
         bottomNavBar = findViewById(R.id.bottomNavigationView)
         userViewModel = UserViewModel()
 
@@ -91,25 +81,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
-            logoutButton?.setOnClickListener {
-                userViewModel.logout {
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                    this.finish()
-                }
-            }
 
-            profileButton?.setOnClickListener {
-                navController.navigate(R.id.profilePageFragment)
-            }
-
-            homePageButton?.setOnClickListener {
-                navController.navigate(R.id.homePageFragment)
-            }
-
-            aboutPageButton?.setOnClickListener {
-                navController.navigate(R.id.aboutFragment)
-            }
         }
     }
 
