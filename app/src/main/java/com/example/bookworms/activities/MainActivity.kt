@@ -3,6 +3,7 @@ package com.example.bookworms.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -21,7 +22,6 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var viewBinding: ActivityMainBinding
-    private lateinit var profileViewBinding: FragmentProfilePageBinding
 
     private val progressFragment = ProgressFragment()
 
@@ -47,16 +47,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
         setEventListeners()
-        loadUserProfileImage()
     }
+
 
     private fun initParameters(){
         bottomNavBar = findViewById(R.id.bottomNavigationView)
         userViewModel = UserViewModel()
-
-        profileViewBinding = FragmentProfilePageBinding.inflate(layoutInflater)
     }
 
     private fun setEventListeners() {
@@ -93,22 +90,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideProgressFragment() {
         supportFragmentManager.beginTransaction().remove(progressFragment).commit()
-    }
-
-    private fun loadUserProfileImage(){
-        val currentUser = auth.currentUser
-        currentUser?.let { user ->
-            userViewModel.getUserByUid(user.uid) { userEntity ->
-                if (userEntity != null) {
-                    if (userEntity.profileImg.isNotEmpty()) {
-                        Picasso.get().load(userEntity.profileImg).placeholder(R.drawable.img_default_profile).into(profileViewBinding.profileCircleImageView)
-                    } else {
-                        // Handle case where profileImg is null or empty
-                        // For example, you can load a default image
-                        Picasso.get().load(R.drawable.img_default_profile).into(profileViewBinding.profileCircleImageView)
-                    }
-                }
-            }
-        }
     }
 }

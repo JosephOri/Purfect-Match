@@ -15,12 +15,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.bookworms.R
 import com.example.bookworms.activities.LoginActivity
 import com.example.bookworms.activities.MainActivity
+import com.example.bookworms.databinding.FragmentProfilePageBinding
 import com.example.bookworms.viewModels.ProfileViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,6 +37,7 @@ class ProfilePageFragment : Fragment() {
     private lateinit var storageRef: StorageReference
 
     private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var profileViewBinding: FragmentProfilePageBinding
 
     private var profileImageView: CircleImageView? = null
     private var profileUserNameTextView: TextView? = null
@@ -60,7 +63,7 @@ class ProfilePageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupClickListeners()
-
+        loadUserProfileImage()
     }
 
     private fun setupClickListeners(){
@@ -94,9 +97,9 @@ class ProfilePageFragment : Fragment() {
         }
     }
 
-
     private fun initializeParameters(view: View){
-        profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+        profileViewBinding = FragmentProfilePageBinding.inflate(layoutInflater)
+        profileViewModel = ProfileViewModel()
 
         profileImageView = view.findViewById(R.id.profileCircleImageView)
         profileUserNameTextView = view.findViewById(R.id.profileUserNameTextView)
@@ -108,6 +111,8 @@ class ProfilePageFragment : Fragment() {
         myPostsButton = view.findViewById(R.id.profileMyPostsButton)
         editProfileButton = view.findViewById(R.id.profilePageEditProfileBtn)
         logoutButton = view.findViewById(R.id.profilePageLogoutBtn)
+
+
     }
 
     private fun initializeFirebase() {
@@ -143,6 +148,24 @@ class ProfilePageFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun loadUserProfileImage(){
+        val currentUser = firebaseAuth.currentUser
+        currentUser?.let { user ->
+            profileViewModel.getUserByUid(user.uid) { userEntity ->
+                if (userEntity != null) {
+                    println(" profileOmg.isNotEmpty():  " + userEntity.profileImg.isNotEmpty())
+                    if (userEntity.profileImg.isNotEmpty()) {
+                        Picasso.get().load(userEntity.profileImg).placeholder(R.drawable.img_default_profile).into(profileViewBinding.profileCircleImageView)
+                    } else {
+                        // Handle case where profileImg is null or empty
+                        // For example, you can load a default image
+                        Picasso.get().load(R.drawable.img_default_profile).into(profileViewBinding.profileCircleImageView)
+                    }
+                }
+            }
+        }
     }
 
 }
