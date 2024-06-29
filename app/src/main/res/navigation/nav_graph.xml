@@ -3,8 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/homePageFragment"
+    app:startDestination="@+id/fragmentMainLayout"
     android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/fragmentMainLayout"
+        android:name="com.example.bookworms.fragments.MainFragment"
+        android:label="@string/activity_main_title"
+        tools:layout="@layout/fragment_main" >
+
+        <action
+            android:id="@+id/action_mainFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/homePageFragment"
@@ -19,6 +30,10 @@
         <action
             android:id="@+id/action_homePageFragment_to_myPostsFragment"
             app:destination="@id/myPostsFragment" />
+
+        <action
+            android:id="@+id/action_homePageFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
 
     </fragment>
 
@@ -70,5 +85,11 @@
         tools:layout="@layout/fragment_edit_profile_page">
 
     </fragment>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.bookworms.fragments.AboutFragment"
+        android:label="@string/about_page_content"
+        tools:layout="@layout/fragment_about_page" />
 
 </navigation>
