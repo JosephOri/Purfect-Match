@@ -2,6 +2,7 @@ package com.example.bookworms.fragments
 
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.example.bookworms.R
 import com.example.bookworms.activities.LoginActivity
 import com.example.bookworms.activities.MainActivity
 import com.example.bookworms.databinding.FragmentProfilePageBinding
+import com.example.bookworms.models.entities.User
 import com.example.bookworms.viewModels.ProfileViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -63,7 +65,7 @@ class ProfilePageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupClickListeners()
-        loadUserProfileImage()
+        //checkAndRequestPermissions()
     }
 
     private fun setupClickListeners(){
@@ -133,15 +135,8 @@ class ProfilePageFragment : Fragment() {
             profileViewModel.getUserByUid(uid) { userEntity ->
                 if(userEntity != null){
                     Log.d("ProfilePageFragment", "User data fetched successfully: $userEntity")
-                    profileUserNameTextView?.text = userEntity.name
-                    profileEmailTextView?.text = userEntity.email
-                    profilePhoneTextView?.text = userEntity.phone
-                    profileBioTextView?.text = "I Love Books"
+                    setProfileData(userEntity)
 
-                    val creationTimestamp = currentUser.metadata?.creationTimestamp
-                    val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                    val creationDate = sdf.format(Date(creationTimestamp!!))
-                    profileDateJoinedTextView?.text = creationDate
                 } else {
                     Log.d("ProfilePageFragment", "Failed to retrieve user data for UID: $uid")
                 }
@@ -150,12 +145,25 @@ class ProfilePageFragment : Fragment() {
 
     }
 
+
+    private fun setProfileData(userEntity: User){
+        profileUserNameTextView?.text = userEntity.name
+        profileEmailTextView?.text = userEntity.email
+        profilePhoneTextView?.text = userEntity.phone
+        profileBioTextView?.text = "I Love Books"
+
+        val creationTimestamp = firebaseAuth.currentUser?.metadata?.creationTimestamp
+        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val creationDate = sdf.format(Date(creationTimestamp!!))
+        profileDateJoinedTextView?.text = creationDate
+    }
+
     private fun loadUserProfileImage(){
         val currentUser = firebaseAuth.currentUser
         currentUser?.let { user ->
             profileViewModel.getUserByUid(user.uid) { userEntity ->
                 if (userEntity != null) {
-                    println(" profileOmg.isNotEmpty():  " + userEntity.profileImg.isNotEmpty())
+                    println(" userEntity:  $userEntity")
                     if (userEntity.profileImg.isNotEmpty()) {
                         Picasso.get().load(userEntity.profileImg).placeholder(R.drawable.img_default_profile).into(profileViewBinding.profileCircleImageView)
                     } else {
