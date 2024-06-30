@@ -11,14 +11,16 @@ import com.example.bookworms.Model.entities.Post
 import com.example.bookworms.Model.entities.User
 
 
+
 @Database(entities = [User::class,Post::class], version = 2, exportSchema = false)
+
 abstract class AppLocalDB : RoomDatabase() {
 
     abstract fun userDao(): UserDao
     abstract fun postDao(): PostDao
     companion object {
         // Define a singleton instance of the database
-        @Volatile private var instance: AppLocalDB? = null;
+        @Volatile private var instance: AppLocalDB? = null
         private const val DB_NAME = "BOOKWORMS_DB"
 
         fun getInstance(): AppLocalDB {
@@ -28,6 +30,7 @@ abstract class AppLocalDB : RoomDatabase() {
                     AppLocalDB::class.java,
                     DB_NAME
                 )
+                    .fallbackToDestructiveMigration()
                     .build()
             }
         }
