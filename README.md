@@ -34,21 +34,21 @@ Welcome to the BookWorms app repository! This project is a comprehensive book-sh
 - **Logs**: Added logs to ensure correct data fetching and UID printing.
 
 ## User Stories
-### User Management (Must Have)
+### User Management (Must Have) <img src="https://img.icons8.com/?size=100&id=86305&format=png&color=FFFFFF" alt="Person" width="25" height="25">
 - **US-1 (Login/Signup)**: Register or login using email and password.
 - **US-2 (Profile)**: View and edit profile information.
 - **US-3 (Logout)**: Log out and return to the login screen.
 
-### Book Sharing (Must Have)
+### Book Sharing (Must Have) <img src="https://img.icons8.com/?size=100&id=42763&format=png&color=FFFFFF" alt="Person" width="25" height="25">
 - **US-4 (Create Book Post)**: Create a post about a book with title, author, review, and optional image.
 - **US-5 (View Book Posts)**: See a feed of all shared book posts.
 - **US-6 (View Book Details)**: View detailed information about a book post.
 
-### Social Interaction (Must Have)
+### Social Interaction (Must Have) <img src="https://img.icons8.com/?size=100&id=123782&format=png&color=FFFFFF" alt="Person" width="25" height="25">
 - **US-7 (Like a Book Post)**: Like a book post.
 - **US-8 (See Likes on a Post)**: See the number of likes on a book post.
 
-### Additional Features (Should Have)
+### Additional Features (Should Have) <img src="https://img.icons8.com/?size=100&id=132&format=png&color=FFFFFF" alt="Person" width="25" height="25">
 - **US-9 (Search for Books)**: Search for books by title or author.
 
 
