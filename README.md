@@ -4,18 +4,18 @@ Welcome to the BookWorms app repository! This project is a comprehensive book-sh
 
 ## Features and Enhancements
 
-### User Profile Management
+### User Profile Management <img src="https://img.icons8.com/?size=100&id=86305&format=png&color=FFFFFF" alt="Person" width="25" height="25">
 - **Profile Page**: View and edit profile information, including name and profile photo.
 - **Joined Date**: Display the date when the user joined.
 - **Profile Image**: Upload and display a profile image.
 - **Navigation**: Navigate between different fragments using NavGraph.
 
-### Book Sharing
+### Book Sharing <img src="https://img.icons8.com/?size=100&id=42763&format=png&color=FFFFFF" alt="Person" width="25" height="25">
 - **Create Book Post**: Create a post with book details, a short review, and an optional image.
 - **View Book Posts**: See a feed of all book posts shared by other users.
 - **View Book Details**: Tap on a book post to see its details, including the full review and poster's profile.
 
-### Social Interaction
+### Social Interaction <img src="https://img.icons8.com/?size=100&id=123782&format=png&color=FFFFFF" alt="Person" width="25" height="25">
 - **Like a Book Post**: Like book posts to show appreciation.
 - **See Likes on a Post**: View the number of likes a book post has received.
 
@@ -80,3 +80,12 @@ Contributions are welcome! Please fork the repository and create a pull request 
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+
+
+
+
+
+
+
+
