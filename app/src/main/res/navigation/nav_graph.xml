@@ -84,6 +84,10 @@
         android:label="@string/edit_profile"
         tools:layout="@layout/fragment_edit_profile_page">
 
+        <action
+            android:id="@+id/action_editProfilePageFragment_to_profilePageFragment"
+            app:destination="@id/profilePageFragment" />
+
     </fragment>
 
     <fragment

@@ -114,6 +114,7 @@
     <string name="go_back_arrow">Go Back</string>
     <string name="about_page_content">"This is the \"BookWorms\" application. This app is a social media platform for book lovers, exchanging books and search for interesting books nearby. You can publish a post about your favorite book, write your review about it and rate. You can also pin a location for your post about a specific book. With that, you and other users can exchange books, for FREE! That is the whole point of \"BookWorms\" - Read, Publish, Exchange. "</string>
     <string name="profile_save_changes">Save</string>
+    <string name="profile_cancel_changes">Cancel</string>
 
 
 
