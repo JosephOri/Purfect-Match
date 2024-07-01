@@ -15,12 +15,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.bookworms.R
 import com.example.bookworms.activities.LoginActivity
-import com.example.bookworms.activities.MainActivity
 import com.example.bookworms.databinding.FragmentProfilePageBinding
 import com.example.bookworms.models.entities.User
 import com.example.bookworms.viewModels.ProfileViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -35,8 +35,12 @@ import java.util.Locale
 class ProfilePageFragment : Fragment() {
 
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var currentUser: FirebaseUser
     private lateinit var firestore: FirebaseFirestore
     private lateinit var storageRef: StorageReference
+    private var selectedImageUri: Uri? = null
+    private val USERS_PROFILE_IMAGES_PATH = "profile_images/"
+    private var fileRefName: String = ""
 
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var profileViewBinding: FragmentProfilePageBinding
@@ -52,8 +56,7 @@ class ProfilePageFragment : Fragment() {
     private var editProfileButton: MaterialButton? = null
     private var logoutButton: MaterialButton? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
 
         val view =  inflater.inflate(R.layout.fragment_profile_page, container, false)
@@ -65,15 +68,12 @@ class ProfilePageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupClickListeners()
-        //checkAndRequestPermissions()
     }
 
     private fun setupClickListeners(){
         val navController = findNavController()
 
         myPostsButton?.setOnClickListener {
-            Log.d("ProfilePageFragment", "Current destination: ${navController.currentDestination}")
-
             if (navController.currentDestination?.id == R.id.profilePageFragment) {
                 navController.navigate(R.id.action_profilePageFragment_to_myPostsFragment)
             } else {
@@ -82,13 +82,12 @@ class ProfilePageFragment : Fragment() {
         }
 
         editProfileButton?.setOnClickListener {
-            Log.d("ProfilePageFragment", "Current destination: ${navController.currentDestination}")
-
             if (navController.currentDestination?.id == R.id.profilePageFragment) {
                 navController.navigate(R.id.action_profilePageFragment_to_editProfilePageFragment)
             } else {
                 Log.e("ProfilePageFragment", "Invalid navigation state")
-            }        }
+            }
+        }
 
         logoutButton?.setOnClickListener {
             profileViewModel.logout {
@@ -113,38 +112,33 @@ class ProfilePageFragment : Fragment() {
         myPostsButton = view.findViewById(R.id.profileMyPostsButton)
         editProfileButton = view.findViewById(R.id.profilePageEditProfileBtn)
         logoutButton = view.findViewById(R.id.profilePageLogoutBtn)
-
-
     }
 
     private fun initializeFirebase() {
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
-        storageRef = FirebaseStorage.getInstance().reference
+        storageRef = FirebaseStorage.getInstance().getReference(USERS_PROFILE_IMAGES_PATH)
 
-        val currentUser = firebaseAuth.currentUser
-        if(currentUser == null){
-            Log.d("ProfilePageFragment", "initializeFirebase: currentUser is null")
-            return
+        currentUser = firebaseAuth.currentUser!!
+
+        storageRef.listAll().addOnSuccessListener { result ->
+            fileRefName = result.items[0].name
+        }.addOnFailureListener { e ->
+            Log.e("ProfilePageFragment", "Failed to list items in storageRef: ${e.message}")
         }
+        println("ProfilePageFragment: fileRefName = result.items[0].name: $fileRefName")
 
         val uid = currentUser.uid
-        Log.d("ProfilePageFragment", "Fetching user data for UID: $uid")
-
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             profileViewModel.getUserByUid(uid) { userEntity ->
                 if(userEntity != null){
-                    Log.d("ProfilePageFragment", "User data fetched successfully: $userEntity")
                     setProfileData(userEntity)
-
                 } else {
                     Log.d("ProfilePageFragment", "Failed to retrieve user data for UID: $uid")
                 }
             }
         }
-
     }
-
 
     private fun setProfileData(userEntity: User){
         profileUserNameTextView?.text = userEntity.name
@@ -157,23 +151,4 @@ class ProfilePageFragment : Fragment() {
         val creationDate = sdf.format(Date(creationTimestamp!!))
         profileDateJoinedTextView?.text = creationDate
     }
-
-    private fun loadUserProfileImage(){
-        val currentUser = firebaseAuth.currentUser
-        currentUser?.let { user ->
-            profileViewModel.getUserByUid(user.uid) { userEntity ->
-                if (userEntity != null) {
-                    println(" userEntity:  $userEntity")
-                    if (userEntity.profileImg.isNotEmpty()) {
-                        Picasso.get().load(userEntity.profileImg).placeholder(R.drawable.img_default_profile).into(profileViewBinding.profileCircleImageView)
-                    } else {
-                        // Handle case where profileImg is null or empty
-                        // For example, you can load a default image
-                        Picasso.get().load(R.drawable.img_default_profile).into(profileViewBinding.profileCircleImageView)
-                    }
-                }
-            }
-        }
-    }
-
 }

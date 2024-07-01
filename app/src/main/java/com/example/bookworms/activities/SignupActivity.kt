@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookworms.R
+import com.example.bookworms.databinding.ActivitySignupBinding
 import com.example.bookworms.models.entities.User
 import com.example.bookworms.utils.Utils
 import com.example.bookworms.viewModels.UserViewModel
@@ -19,15 +20,23 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 
 
 class SignupActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivitySignupBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var storageRef: StorageReference
+
     private lateinit var userViewModel: UserViewModel
-    private lateinit var cpi : CircularProgressIndicator
+
+    private var selectedImageUri: Uri? = null
+    private val USERS_PROFILE_IMAGES_PATH = "profile_images/"
 
     private lateinit var fullNameInputTextView:TextInputEditText
     private lateinit var phoneInputTextView:TextInputEditText
@@ -40,6 +49,8 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var profileImageView : ImageView
     private lateinit var imageUrlRef : String
 
+    private lateinit var cpi : CircularProgressIndicator
+
     private var imageUri: Uri? = null
     private val imagePicker =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -47,13 +58,15 @@ class SignupActivity : AppCompatActivity() {
                 imageUri = it
                 Picasso.get().load(imageUri).into(profileImageView)
                 Toast.makeText(this, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
-                Log.d("SignupActivity", "Image URL: ${it.path}")
+                Log.d("SignupActivity", "Image URL / it.path: ${it.path}")
+                Log.d("SignupActivity", "imageUri: ${imageUri}")
             }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
+        binding = ActivitySignupBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         auth = Firebase.auth
         if (auth.currentUser != null){
@@ -91,7 +104,8 @@ class SignupActivity : AppCompatActivity() {
                 uploadImage{ downloadUrl ->
                     if(downloadUrl != null){
                         imageUrlRef = downloadUrl.toString()
-                        Log.d("SignupActivity", "Image URL: $imageUrlRef")
+                        Log.d("SignupActivity", "Image URL inside picker: $imageUrlRef")
+                        Log.d("SignupActivity", "downloadUrl: $downloadUrl")
 
                     }
                 }
@@ -138,8 +152,11 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun initParameters(){
-        cpi = findViewById(R.id.signupCircularProgressIndicator)
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
+        storageRef = FirebaseStorage.getInstance().getReference(USERS_PROFILE_IMAGES_PATH)
 
+        cpi = findViewById(R.id.signupCircularProgressIndicator)
 
         fullNameInputTextView = findViewById(R.id.activity_signup_user_name_input)
         phoneInputTextView = findViewById(R.id.activity_signup_phone_input)
@@ -167,15 +184,7 @@ class SignupActivity : AppCompatActivity() {
         imageUri?.let{ uri ->
             Log.d("SignupActivity", "uploadImage(): Image URI: $uri")
 
-            val storageReference = FirebaseStorage.getInstance().getReference("profile_images/${System.currentTimeMillis()}.jpg")
-            Log.d("SignupActivity", "uploadImage(): storageReference.name: ${storageReference.name}")
-            Log.d("SignupActivity", "uploadImage(): storageReference.path: ${storageReference.path}")
-            Log.d("SignupActivity", "uploadImage(): storageReference.downloadUrl: ${storageReference.downloadUrl}")
-            Log.d("SignupActivity", "uploadImage(): storageReference.bucket: ${storageReference.bucket}")
-            Log.d("SignupActivity", "uploadImage(): storageReference.root: ${storageReference.root}")
-            Log.d("SignupActivity", "uploadImage(): storageReference.parent: ${storageReference.parent}")
-
-            storageReference.putFile(uri).addOnSuccessListener { taskSnapshot ->
+            storageRef.putFile(uri).addOnSuccessListener { taskSnapshot ->
                 Log.d("SignupActivity", "uploadImage(): Image uploaded successfully")
                 Toast.makeText(this, "Image uploaded", Toast.LENGTH_SHORT).show()
                 taskSnapshot.storage.downloadUrl.addOnSuccessListener { downloadUri ->

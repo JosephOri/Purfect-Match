@@ -56,7 +56,6 @@ class UserFirebaseModel {
 
         userDocument.get()
             .addOnSuccessListener { documentSnapshot ->
-                Log.d("UserFirebaseModel", "snapshot data: ${documentSnapshot.data}")
                 if (documentSnapshot.data != null) {
                     val name = documentSnapshot.getString("name") ?: ""
                     val email = documentSnapshot.getString("email") ?: ""

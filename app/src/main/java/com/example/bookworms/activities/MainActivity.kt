@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         val currentUser = auth.currentUser
         if(currentUser != null) {
-            Log.d("MainActivity", "Current user details: displayName: ${currentUser.displayName}, email: ${currentUser.email}, UID: ${currentUser.uid}, phoneNumber: ${currentUser.phoneNumber}")
+            Log.d("MainActivity", "Current user details: email: ${currentUser.email}, UID: ${currentUser.uid}")
         } else {
             Log.d("MainActivity", "No user logged in")
             val intent = Intent(this, LoginActivity::class.java)
