@@ -46,7 +46,6 @@ class SignupActivity : AppCompatActivity() {
             uri?.let {
                 imageUri = it
                 Picasso.get().load(imageUri).into(profileImageView)
-                // set the same image in an ImageView with id of "activityMainProfileImageView" in the main_activity.xml layout
                 Toast.makeText(this, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
                 Log.d("SignupActivity", "Image URL: ${it.path}")
             }
@@ -55,7 +54,6 @@ class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-
 
         auth = Firebase.auth
         if (auth.currentUser != null){
@@ -90,6 +88,13 @@ class SignupActivity : AppCompatActivity() {
         userViewModel.register(user, password){isSuccessful ->
             if(isSuccessful){
                 Toast.makeText(applicationContext, "User registered successfully", Toast.LENGTH_SHORT).show()
+                uploadImage{ downloadUrl ->
+                    if(downloadUrl != null){
+                        imageUrlRef = downloadUrl.toString()
+                        Log.d("SignupActivity", "Image URL: $imageUrlRef")
+
+                    }
+                }
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
@@ -158,7 +163,7 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadImage(){
+    private fun uploadImage(callback: (Uri?) -> Unit){
         imageUri?.let{ uri ->
             Log.d("SignupActivity", "uploadImage(): Image URI: $uri")
 
@@ -177,11 +182,16 @@ class SignupActivity : AppCompatActivity() {
                     imageUri = downloadUri
                 }.addOnFailureListener { e ->
                     Toast.makeText(applicationContext, "Image upload failed: ${e.message}", Toast.LENGTH_SHORT ).show()
+                    callback(null)
                 }
             }.addOnFailureListener { e ->
                 Log.e("SignupActivity", "uploadImage(): Image upload failed: ${e.message}")
                 Toast.makeText(applicationContext,"Image upload failed: ${e.message}",Toast.LENGTH_SHORT).show()
+                callback(null)
             }
+        } ?: run{
+            Toast.makeText(applicationContext, "No image selected", Toast.LENGTH_SHORT).show()
+            callback(null)
         }
     }
 }
