@@ -1,4 +1,4 @@
-package com.example.bookworms.Model.ModelRoom.dao
+package com.example.bookworms.models.ModelRoom.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -8,7 +8,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import com.example.bookworms.Model.entities.User
+import com.example.bookworms.models.entities.User
 
 
 @Dao

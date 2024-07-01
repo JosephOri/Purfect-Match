@@ -1,15 +1,15 @@
-package com.example.bookworms.Model.ModelRoom
+package com.example.bookworms.models.ModelRoom
 
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.bookworms.BookWormsApp
-import com.example.bookworms.Model.entities.User
-import com.example.bookworms.Model.ModelRoom.dao.UserDao
+import com.example.bookworms.models.entities.User
+import com.example.bookworms.models.ModelRoom.dao.UserDao
 
 
-@Database(entities = [User::class], version = 3, exportSchema = false)
+@Database(entities = [User::class], version = 4, exportSchema = false)
 abstract class AppLocalDB : RoomDatabase() {
 
     abstract fun userDao(): UserDao

@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookworms.Model.entities.BookEntity
+import com.example.bookworms.models.entities.BookEntity
 import com.example.bookworms.R
 import com.google.android.material.imageview.ShapeableImageView
 
@@ -32,7 +32,7 @@ class BookPostAdapter (private val bookList: List<BookEntity>):
         holder.bookTitleTextView.text = currentBook.title
         holder.bookAuthorTextView.text = currentBook.author
         holder.bookGenresTextView.text = currentBook.genres
-        holder.bookRatingTextView.text = currentBook.rating.toString()
+        holder.bookRatingTextView.text = currentBook.rating
         holder.bookDescriptionTextView.text = currentBook.description
     }
 

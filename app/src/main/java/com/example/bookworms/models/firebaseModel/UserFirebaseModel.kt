@@ -1,7 +1,7 @@
-package com.example.bookworms.Model.firebaseModel
+package com.example.bookworms.models.firebaseModel
 
 import android.util.Log
-import com.example.bookworms.Model.entities.User
+import com.example.bookworms.models.entities.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -28,8 +28,9 @@ class UserFirebaseModel {
             }
 
     }
+
     fun userCollection(uid: String, name: String, email: String,
-                        phone:String, profileImg: String, callback: (Boolean) -> Unit) {
+                       phone:String, profileImg: String, callback: (Boolean) -> Unit) {
         val db = Firebase.firestore
         val docRef = db.collection("users").document(uid)
         val data = hashMapOf(
@@ -40,10 +41,10 @@ class UserFirebaseModel {
             "profileImg" to profileImg
         )
         docRef.set(data).addOnSuccessListener {
-            println("User uploaded successfully")
+            Log.d("UserFirebaseModel", "User uploaded successfully with UID: $uid")
             callback(true)
         }.addOnFailureListener { exception ->
-            println("Error uploading user: ${exception.message}")
+            Log.d("UserFirebaseModel", "Error uploading user: ${exception.message}")
             callback(false)
         }
     }
@@ -51,13 +52,10 @@ class UserFirebaseModel {
     fun getUserByUid(uid: String, callback: (User?) -> Unit) {
         val db = Firebase.firestore
         val userDocument = db.collection("users").document(uid)
-        Log.d("UserFirebaseModel", "getUserByUid() - Uid is: $uid")
+        Log.d("UserFirebaseModel", "Getting user by UID: $uid")
+
         userDocument.get()
             .addOnSuccessListener { documentSnapshot ->
-                Log.d(
-                    "UserFirebaseModel",
-                    "getUserByUid() - DocumentSnapshot.data is: ${documentSnapshot.data}"
-                )
                 if (documentSnapshot.data != null) {
                     val name = documentSnapshot.getString("name") ?: ""
                     val email = documentSnapshot.getString("email") ?: ""
@@ -70,6 +68,11 @@ class UserFirebaseModel {
                     callback(null)
                 }
             }
-
+            .addOnFailureListener { exception ->
+                Log.d("UserFirebaseModel", "Error fetching user document: ${exception.message}")
+                callback(null)
+            }
     }
+
+
 }

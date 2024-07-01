@@ -2,9 +2,9 @@ package com.example.bookworms.services
 
 import android.util.Log
 import com.example.bookworms.BookWormsApp
-import com.example.bookworms.Model.firebaseModel.UserFirebaseModel
-import com.example.bookworms.Model.entities.User
-import com.example.bookworms.Model.ModelRoom.UserRoomModel
+import com.example.bookworms.models.firebaseModel.UserFirebaseModel
+import com.example.bookworms.models.entities.User
+import com.example.bookworms.models.ModelRoom.UserRoomModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -13,11 +13,9 @@ class JoinedUserModel {
 
     private val userRoomModel: UserRoomModel = UserRoomModel()
     private val userFirebaseModel: UserFirebaseModel = UserFirebaseModel()
-    private lateinit var auth: FirebaseAuth
-
+    private var auth: FirebaseAuth = Firebase.auth
 
     fun register(user: User, password: String,callback: (Boolean) -> Unit ){
-        auth = Firebase.auth
         userFirebaseModel.register(user.email,password){ isSuccessful ->
             if(isSuccessful){
                 val uid =auth.currentUser?.uid
