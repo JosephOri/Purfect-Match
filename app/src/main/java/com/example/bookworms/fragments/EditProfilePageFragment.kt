@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.example.bookworms.R
 import com.example.bookworms.databinding.FragmentEditProfilePageBinding
@@ -20,6 +22,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
 class EditProfilePageFragment : Fragment() {
@@ -28,9 +31,6 @@ class EditProfilePageFragment : Fragment() {
     private lateinit var currentUser: FirebaseUser
     private lateinit var firestore: FirebaseFirestore
     private lateinit var storageRef: StorageReference
-
-    private var selectedImageUri: Uri? = null
-    private val USERS_PROFILE_IMAGES_PATH = "profile_images/"
 
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var editProfileViewBinding: FragmentEditProfilePageBinding
@@ -44,6 +44,20 @@ class EditProfilePageFragment : Fragment() {
     private var editProfileImageButton: MaterialButton? = null
     private var saveButton: MaterialButton? = null
     private var cancelButton: MaterialButton? = null
+
+
+    private var selectedImageUri: Uri? = null
+    private val USERS_PROFILE_IMAGES_PATH = "profile_images/"
+    private val imagePicker = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let{
+            selectedImageUri = uri
+            editProfileImageView?.setImageURI(selectedImageUri)
+        Picasso.get().load(selectedImageUri).into(editProfileImageView)
+        Toast.makeText(context, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
+        Log.d("SignupActivity", "Image URL / it.path: ${it.path}")
+        Log.d("SignupActivity", "imageUri: ${selectedImageUri}")
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
@@ -79,13 +93,15 @@ class EditProfilePageFragment : Fragment() {
         currentUser = firebaseAuth.currentUser!!
         firestore = FirebaseFirestore.getInstance()
         storageRef = FirebaseStorage.getInstance().reference
+        // make Toasts and Logs with relevant Firebase info
+
     }
 
     private fun setupClickListeners() {
         val navController = findNavController()
 
         editProfileImageButton?.setOnClickListener {
-            // Open gallery to select image
+            imagePicker.launch("image/*")
         }
 
         saveButton?.setOnClickListener {
