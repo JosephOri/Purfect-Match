@@ -1,14 +1,17 @@
 package com.example.bookworms.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.bookworms.R
-import com.example.bookworms.models.entities.PostEntity
+import com.example.bookworms.viewModel.UploadPostViewModel
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 /**
  * A simple `Fragment` subclass.
@@ -16,7 +19,9 @@ import com.google.android.material.textfield.TextInputEditText
  */
 class AddPostFragment : Fragment() {
 
-    private lateinit var dummyPost: PostEntity
+    private lateinit var uploadPostViewModel: UploadPostViewModel
+    lateinit var auth: FirebaseAuth
+    val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +39,13 @@ class AddPostFragment : Fragment() {
 
     }
 
-    private fun populateUiWithDummyPost(view: View) {
+     private fun populateUiWithDummyPost(view: View) {
         val titleInput = view.findViewById<TextInputEditText>(R.id.post_title_input)
         val descriptionInput = view.findViewById<TextInputEditText>(R.id.post_description_input)
         val addPostButton = view.findViewById<View>(R.id.addPostButton)
+
+//        titleInput.setText(dummyPost.title)
+//        descriptionInput.setText(dummyPost.description)
         addPostButton.setOnClickListener {
             // Add post to database
             Toast.makeText(context, "Post added successfully", Toast.LENGTH_SHORT).show()
