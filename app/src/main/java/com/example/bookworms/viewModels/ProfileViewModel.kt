@@ -7,16 +7,14 @@ import com.example.bookworms.services.JoinedUserModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class UserViewModel :ViewModel(){
-    private val joinedUserModel: JoinedUserModel = JoinedUserModel()
 
-    fun register(user: User, password: String,callback:(Boolean)->Unit){
-        joinedUserModel.register(user, password, callback)
-    }
+class ProfileViewModel: ViewModel() {
 
-    fun getUserByUid(uid: String, callback: (User) -> Unit){
+    private val joinedUserModel = JoinedUserModel()
+
+    fun getUserByUid(uid :String,  callback: (User)-> Unit){
         viewModelScope.launch(Dispatchers.IO) {
-            joinedUserModel.getUserByUid(uid) { user ->
+            joinedUserModel.getUserByUid(uid){ user ->
                 viewModelScope.launch(Dispatchers.Main) {
                     callback(user)
                 }
@@ -28,5 +26,6 @@ class UserViewModel :ViewModel(){
         joinedUserModel.logout()
         callback()
     }
+
 
 }

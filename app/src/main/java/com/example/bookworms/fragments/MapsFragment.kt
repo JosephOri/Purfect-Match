@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import com.example.bookworms.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
@@ -27,9 +26,9 @@ class MapsFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val telAviv = LatLng(32.0853, 34.7818)
+        googleMap.addMarker(MarkerOptions().position(telAviv).title("Marker in Tel Aviv"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(telAviv))
     }
 
     override fun onCreateView(
@@ -42,7 +41,7 @@ class MapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment?
+        val mapFragment = childFragmentManager.findFragmentById(R.id.mapsFragment) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
     }
 }
