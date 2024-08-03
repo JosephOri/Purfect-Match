@@ -18,10 +18,9 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo_pages"
-            android:adjustViewBounds="true">
-        </ImageView>
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:src="@drawable/purffect_logo_pages"></ImageView>
 
         <View
             android:id="@+id/divider"

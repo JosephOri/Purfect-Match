@@ -18,14 +18,14 @@
     <string name="title_activity_private_area">PrivateAreaActivity</string>
     <string name="private_area_label_title">Private Area</string>
     <string name="private_area_label_my_uploads">My Uploads</string>
-    <string name="private_area_label_upload_a_pet">Upload A Pet</string>
+    <string name="private_area_label_upload_a_pet">Upload A Cat</string>
     <string name="private_area_label_reset_password">Reset Password</string>
     <string name="private_area_label_change_your_password_title">Change Your Password:</string>
     <string name="private_area_label_email_filling">Email</string>
     <string name="private_area_label_password_filling">Password</string>
     <string name="private_area_label_logout">LogOut</string>
     <string name="private_area_label_back_to_home_page">Back To Home Page</string>
-    <string name="upload_a_pet_label_title">Upload a pet</string>
+    <string name="upload_a_pet_label_title">Upload A Cat</string>
     <string name="upload_a_pet_label_image_of_the_pet_button">+ Image of the pet</string>
     <string name="upload_a_pet_label_kind">Kind</string>
     <string name="upload_a_let_label_age">Age</string>
@@ -70,5 +70,5 @@
     <string name="edit_card_button_post">Edit</string>
     <string name="edit_profile_btn">edit profile</string>
     <string name="edit_profile_title">Edit Profile</string>
-    <string name="upload_a_pet_kind_spinner">Select A Kind</string>
+    <string name="upload_a_pet_kind_spinner">Select A Cat</string>
 </resources>
