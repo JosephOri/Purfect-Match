@@ -96,7 +96,7 @@ class EditPostFragment : Fragment() {
         val navHostFragment: NavHostFragment = activity?.supportFragmentManager
             ?.findFragmentById(R.id.main_navhost_frag) as NavHostFragment
         navController = navHostFragment.navController
-        allDogsKind();
+        allCatsKind();
         return view
     }
 
@@ -181,7 +181,7 @@ class EditPostFragment : Fragment() {
         }
     }
 
-    private fun allDogsKind() {
+    private fun allCatsKind() {
         val client = OkHttpClient()
 
         val request = Request.Builder()

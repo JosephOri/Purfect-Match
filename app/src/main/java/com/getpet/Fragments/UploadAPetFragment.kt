@@ -82,7 +82,7 @@ class UploadAPetFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_upload_a_pet, container, false)
 
 
-        allDogsKind();
+        allCatsKind();
 
         return view
 
@@ -225,7 +225,7 @@ class UploadAPetFragment : Fragment() {
     }
 
 
-    private fun allDogsKind() {
+    private fun allCatsKind() {
         val client = OkHttpClient()
         val request = Request.Builder()
             .url("https://catbreeddb.p.rapidapi.com/")

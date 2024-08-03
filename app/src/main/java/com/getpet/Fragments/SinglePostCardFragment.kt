@@ -56,14 +56,14 @@ class SinglePostCardFragment : Fragment() {
         phoneNumberTextView.text = post.phone
         ownerTextView.text = post.owner
 
-        // Call the API to fetch facts about the specific dog breed
-        fetchDogFacts(post.kind)
+        // Call the API to fetch facts about the specific cat breed
+        fetchCatFacts(post.kind)
 
         // Inflate the layout for this fragment
         return view
     }
 
-    private fun fetchDogFacts(breed: String) {
+    private fun fetchCatFacts(breed: String) {
         val client = OkHttpClient()
 
         val request = Request.Builder()
@@ -85,7 +85,7 @@ class SinglePostCardFragment : Fragment() {
                 activity?.runOnUiThread {
                     // Format the response and update TextView
 
-                    apiTextView.text = formatDogFacts(responseData)
+                    apiTextView.text = formatCatFacts(responseData)
                     if (apiTextView.text.isEmpty()){
                         apiTextView.text= "This breed not found"
                     }
@@ -94,7 +94,7 @@ class SinglePostCardFragment : Fragment() {
         })
     }
 
-    private fun formatDogFacts(responseData: String?): String {
+    private fun formatCatFacts(responseData: String?): String {
         if (responseData.isNullOrEmpty()) return "No data available"
 
         val jsonArray = JSONArray(responseData)
