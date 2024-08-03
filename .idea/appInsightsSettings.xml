@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AppInsightsSettings">
+    <option name="selectedTabId" value="Android Vitals" />
     <option name="tabSettings">
       <map>
         <entry key="Firebase Crashlytics">
@@ -8,10 +9,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.example.bookworms" />
-                  <option name="mobileSdkAppId" value="1:308815964827:android:ffc9783e36beaf8b83743e" />
-                  <option name="projectId" value="bookworms-2234" />
-                  <option name="projectNumber" value="308815964827" />
+                  <option name="appId" value="com.getpet" />
+                  <option name="mobileSdkAppId" value="1:568184039798:android:16e5240a468b2f0bda7257" />
+                  <option name="projectId" value="getpet-5e736" />
+                  <option name="projectNumber" value="568184039798" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -1,121 +1,74 @@
 <resources>
-    <!--    app name and activities names-->
-    <string name="app_name">BookWorms</string>
-    <string name="app_logo">App Logo</string>
-    <string name="activity_main_title">Welcome to BookWorms</string>
-    <string name="activity_signup_title">Signup</string>
-    <string name="activity_login_title">Login</string>
-
-    <!--    Login and Signup strings-->
-
-    <string name="user_name">User name</string>
-    <string name="enter_user_name">Enter your user name</string>
-    <string name="email">Email</string>
-    <string name="enter_email">Enter your email</string>
-
-    <string name="phone">Phone</string>
-    <string name="enter_phone">Enter your phone number</string>
-    <string name="password">Password</string>
-    <string name="enter_password">Enter password</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="enter_confirm_password">Enter confirm password</string>
-    <string name="already_have_account">Already have an account? Log in!</string>
-    <string name="not_registered_yet">Not Registered Yet? Sign up!</string>
-
-    <string name="login_title">Are you a Bookworm?</string>
-    <string name="login_subtitle">Login to start exploring</string>
-    <string name="remember_me">Remember me</string>
-
-    <string name="signup_title">Become a Bookworm</string>
-    <string name="signup_subtitle">Sign up to start exploring</string>
-
-
-    <string name="signup_button">Sign Up</string>
-    <string name="login_button">Login</string>
-    <string name="home_page_button">Home</string>
-    <string name="profile_page_button">Profile</string>
-    <string name="about_page_button">About Us</string>
-
-    <string name="book_item_title">Book Title</string>
-    <string name="book_item_author">Author:</string>
-    <string name="book_item_image">Image</string>
-    <string name="book_item_genres">Genres:</string>
-    <string name="book_item_rating">Rating:</string>
-    <string name="book_item_description">Description:</string>
-
-    <string name="profile_title">Profile</string>
+    <string name="app_name">GetPet</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="register_label_name"> Name</string>
+    <string name="register_label_email"> Email</string>
+    <string name="register_label_password"> Password</string>
+    <string name="register_label_confirm_password"> Confirm Password</string>
+    <string name="register_label_go_back">go back</string>
+    <string name="register_label_submit">submit</string>
+    <string name="main_label_click_here_to_register">  click here to register  </string>
+    <string name="main_label_login">Login</string>
+    <string name="main_label_password">Password</string>
+    <string name="main_label_email">Email</string>
+    <string name="register_label_Error_fill_information">Please fill all the information above</string>
+    <string name="register_label_Error_failure_sign_up">Sign up failed, try again</string>
+    <string name="main_label_log_in_success">success</string>
+    <string name="main_label_failed_log_in">log in failed, try again</string>
+    <string name="title_activity_private_area">PrivateAreaActivity</string>
+    <string name="private_area_label_title">Private Area</string>
+    <string name="private_area_label_my_uploads">My Uploads</string>
+    <string name="private_area_label_upload_a_pet">Upload A Pet</string>
+    <string name="private_area_label_reset_password">Reset Password</string>
+    <string name="private_area_label_change_your_password_title">Change Your Password:</string>
+    <string name="private_area_label_email_filling">Email</string>
+    <string name="private_area_label_password_filling">Password</string>
+    <string name="private_area_label_logout">LogOut</string>
+    <string name="private_area_label_back_to_home_page">Back To Home Page</string>
+    <string name="upload_a_pet_label_title">Upload a pet</string>
+    <string name="upload_a_pet_label_image_of_the_pet_button">+ Image of the pet</string>
+    <string name="upload_a_pet_label_kind">Kind</string>
+    <string name="upload_a_let_label_age">Age</string>
+    <string name="upload_a_pet_label_about">About</string>
+    <string name="upload_a_pet_label_phone_to_connect">Phone To Connect</string>
+    <string name="upload_a_pet_label_upload_button">Upload</string>
+    <string name="upload_a_pet_label_back_to_private_area">Back To Private Area</string>
+    <string name="upload_a_pet_label_add_img_btn">+ add image</string>
+    <string name="upload_a_pet_upload_btn">upload</string>
+    <string name="upload_a_pet_go_back_btn">go back</string>
+    <string name="upload_a_pet_label_location">location</string>
+    <string name="upload_a_pet_label_owner_name">owner name</string>
+    <string name="register_label_show_password">Show Password</string>
+    <string name="register_label_show_confirm_password">Show Confirm Password</string>
+    <string name="private_area_label_confirm_password">confirm password</string>
+    <string name="private_area_label_show_password">show password</string>
+    <string name="title_activity_single_post">SinglePostActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_post">PostActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="hello_blank_fragment">Blank Fragment Title</string>
+    <string name="main_label_nav_upload_post">upload post</string>
+    <string name="main_label_nav_profile">profile</string>
+    <string name="main_label_my_posts">my posts</string>
+    <string name="main_label_map_fragment">map</string>
+    <string name="profile_label_title">Profile</string>
+    <string name="profile_picture_description">profile pic</string>
     <string name="edit_profile">Edit Profile</string>
-
-    <string name="profile_image">Profile Image</string>
-    <string name="profile_image_description">Upload your profile image</string>
-    <string name="profile_change_image">Change your profile image</string>
-
-    <string name="profile_user_name">User Name:</string>
-    <string name="profile_example_user_name">Israel Israeli</string>
-    <string name="profile_edit_user_name">Edit User Name</string>
-
-    <string name="profile_phone">Phone:</string>
-    <string name="profile_phone_example">0501234567</string>
-    <string name="profile_edit_phone">Edit Phone Number</string>
-
-    <string name="profile_date_joined">Joined At:</string>
-    <string name="profile_example_date_joined">01/06/2024</string>
-    <string name="profile_edit_date_joined">Edit Date Joined</string>
-
-    <string name="profile_bio">Bio:</string>
-    <string name="profile_example_bio">I love reading books!</string>
-    <string name="profile_edit_bio">Edit Bio</string>
-
-    <string name="profile_email">Email:</string>
-    <string name="profile_example_email">Israel@israeli.com</string>
-    <string name="profile_edit_email">Edit Email</string>
-
-    <string name="profile_address">Address:</string>
-    <string name="profile_example_address">1234 Main St, Los Angeles, CA 90007</string>
-    <string name="profile_edit_address">Edit Address</string>
-
-
-    <string name="logout_button">Logout</string>
-    <string name="profile_my_posts">My Posts</string>
-
-
-    <string name="books_fragment_title">Books</string>
-    <string name="no_books_available">No Books Available</string>
-
-
-    <!--    book details and post details strings-->
-    <string name="book_title">Book Title</string>
-    <string name="enter_book_title">Enter book title</string>
-    <string name="book_author">Author</string>
-    <string name="enter_book_author">Enter book author</string>
-    <string name="book_genres">Genres</string>
-    <string name="enter_book_genres">Enter book genres</string>
-    <string name="book_rating">Rating</string>
-    <string name="enter_book_rating">Enter book rating</string>
-    <string name="book_image">Image</string>
-    <string name="no_image_available">No Image Available</string>
-    <string name="upload_image">Upload Image</string>
-    <string name="camera_button">Camera Button</string>
-    <string name="book_description">Description</string>
-    <string name="enter_book_description">Enter book description</string>
-    <string name="post_title">Post title</string>
-    <string name="enter_post_title">Enter post title</string>
-    <string name="post_description">Post Description</string>
-    <string name="enter_post_description">Enter post description</string>
-    <string name="post_author">Post Author</string>
-    <string name="enter_owner_name">Enter book owner name</string>
-
-    <!--    navigation strings-->
-    <string name="menu_navbar_home">Home</string>
-    <string name="menu_navbar_profile">Profile</string>
-    <string name="menu_navbar_my_posts">My Posts</string>
-    <string name="menu_navbar_map">Map</string>
-    <string name="menu_navbar_add_post">Add Post</string>
-
-    <string name="go_back_arrow">Go Back</string>
-    <string name="about_page_content">"This is the \"BookWorms\" application. This app is a social media platform for book lovers, exchanging books and search for interesting books nearby. You can publish a post about your favorite book, write your review about it and rate. You can also pin a location for your post about a specific book. With that, you and other users can exchange books, for FREE! That is the whole point of \"BookWorms\" - Read, Publish, Exchange. "</string>
-    <string name="profile_save_changes">Save</string>
-
-
-
+    <string name="save_changes">save changes</string>
+    <string name="profile_label_email">Email</string>
+    <string name="add_profile_image">+ profile image</string>
+    <string name="map_content_description">Google Map</string>
+    <string name="kind_my_card">kind:</string>
+    <string name="my_card_age">age:</string>
+    <string name="my_card_about">about:</string>
+    <string name="my_card_location">location:</string>
+    <string name="my_card_phone">phone:</string>
+    <string name="my_card_owner">owner:</string>
+    <string name="my_card_post_image">post_image</string>
+    <string name="edit_card_button_post">Edit</string>
+    <string name="edit_profile_btn">edit profile</string>
+    <string name="edit_profile_title">Edit Profile</string>
+    <string name="upload_a_pet_kind_spinner">Select A Kind</string>
 </resources>
