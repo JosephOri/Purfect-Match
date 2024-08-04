@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.getpet.Fragments.ProfileFragment"
+        android:name="com.purfectmatch.Fragments.ProfileFragment"
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/uploadAPetFragment"
-        android:name="com.getpet.Fragments.UploadAPetFragment"
+        android:name="com.purfectmatch.Fragments.UploadAPetFragment"
         android:label="UploadAPetFragment" />
 
     <action
@@ -19,7 +19,7 @@
         app:destination="@id/uploadAPetFragment" />
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.getpet.Fragments.MapFragment"
+        android:name="com.purfectmatch.Fragments.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
     <action
@@ -27,7 +27,7 @@
         app:destination="@id/mapFragment" />
     <fragment
         android:id="@+id/myUploadsFragment"
-        android:name="com.getpet.Fragments.MyUploadsFragment"
+        android:name="com.purfectmatch.Fragments.MyUploadsFragment"
         android:label="fragment_my_uploads"
         tools:layout="@layout/fragment_my_uploads" />
     <action
@@ -45,11 +45,11 @@
         app:destination="@id/editPostFragment">
         <argument
             android:name="post"
-            app:argType="com.getpet.Model.Entities.PostEntity"/>
+            app:argType="com.purfectmatch.Model.Entities.PostEntity"/>
     </action>
     <fragment
         android:id="@+id/editProfileFragment3"
-        android:name="com.getpet.Fragments.EditProfileFragment"
+        android:name="com.purfectmatch.Fragments.EditProfileFragment"
         android:label="EditProfileFragment" />
     <action
         android:id="@+id/action_global_editProfileFragment"
@@ -63,6 +63,6 @@
         app:destination="@id/singlePostCardFragment" >
         <argument
             android:name="post"
-            app:argType="com.getpet.Model.Entities.PostEntity"/>
+            app:argType="com.purfectmatch.Model.Entities.PostEntity"/>
     </action>
 </navigation>

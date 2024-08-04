@@ -10,11 +10,11 @@ plugins {
 }
 
 android {
-    namespace = "com.getpet"
+    namespace = "com.purfectmatch"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.getpet"
+        applicationId = "com.purfectmatch"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
