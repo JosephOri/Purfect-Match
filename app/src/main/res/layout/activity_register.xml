@@ -31,7 +31,7 @@
         android:layout_gravity="center"
         android:orientation="horizontal">
 
-        <com.getpet.components.PrimaryButton
+        <com.purfectmatch.components.PrimaryButton
             android:id="@+id/register_profile_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
         </RelativeLayout>
 
         <!-- Submit and Go Back Buttons -->
-        <com.getpet.components.PrimaryButton
+        <com.purfectmatch.components.PrimaryButton
             android:id="@+id/submit_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
             android:layout_margin="10dp"
             android:layout_gravity="center" />
 
-        <com.getpet.components.PrimaryButton
+        <com.purfectmatch.components.PrimaryButton
             android:id="@+id/goBack_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

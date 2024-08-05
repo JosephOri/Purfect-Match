@@ -10,11 +10,11 @@ plugins {
 }
 
 android {
-    namespace = "com.getpet"
+    namespace = "com.purfectmatch"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.getpet"
+        applicationId = "com.purfectmatch"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -62,6 +62,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.2.0")
     implementation("com.google.firebase:firebase-database-ktx:20.3.1")
     implementation("androidx.activity:activity:1.8.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     val nav_version = "2.7.7"
     val room_version = "2.6.1"
     implementation("androidx.core:core-ktx:1.13.0")
