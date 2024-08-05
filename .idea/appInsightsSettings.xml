@@ -9,10 +9,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.purfectmatch" />
+                  <option name="mobileSdkAppId" value="1:145902278150:android:edc216d63533440b679587" />
+                  <option name="projectId" value="purfect-match-431515" />
+                  <option name="projectNumber" value="145902278150" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
