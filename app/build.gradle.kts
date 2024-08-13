@@ -76,7 +76,10 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-storage:20.3.0")
-    implementation("com.google.firebase:firebase-firestore:24.11.1")
+    implementation("com.google.firebase:firebase-firestore:25.0.0")
+    implementation("io.grpc:grpc-okhttp:1.50.2") // gRPC dependency
+    implementation("io.grpc:grpc-protobuf-lite:1.50.2") // gRPC dependency
+    implementation("io.grpc:grpc-stub:1.50.2") // gRPC dependency
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
