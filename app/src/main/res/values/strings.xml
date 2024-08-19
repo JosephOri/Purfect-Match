@@ -7,7 +7,7 @@
     <string name="register_label_confirm_password"> Confirm Password</string>
     <string name="register_label_go_back">go back</string>
     <string name="register_label_submit">submit</string>
-    <string name="main_label_click_here_to_register">  click here to register  </string>
+    <string name="main_label_Sign_Up">  Sign Up  </string>
     <string name="main_label_login">Login</string>
     <string name="main_label_password">Password</string>
     <string name="main_label_email">Email</string>
